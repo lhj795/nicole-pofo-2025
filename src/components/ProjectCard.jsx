@@ -13,7 +13,18 @@ export default function ProjectCard({
 
     return (
         <Box
+        onMouseEnter={() =>
+    window.dispatchEvent(
+      new CustomEvent("cursor-mode", { detail: "caseStudy" })
+    )
+  }
+  onMouseLeave={() =>
+    window.dispatchEvent(
+      new CustomEvent("cursor-mode", { detail: "default" })
+    )
+  }
             sx={{
+                
                 position: "relative",
                 width: "100%",
                 display: "block",
@@ -77,7 +88,7 @@ export default function ProjectCard({
                         position: "absolute",
                         inset: 0,
                         borderRadius: 0.75,
-                        border: "1px solid white",
+                        border: { xs: "none", md: "1px solid white" },
                         backgroundColor: { xs: "none", md: "#979797" },
                         backdropFilter: { xs: "none", md: "blur(8px)" },
                         mixBlendMode: "screen",        // 🔸 only this blends
@@ -122,17 +133,6 @@ export default function ProjectCard({
                         />
                     )}
 
-                    <Stack
-                        spacing={0.5}
-                        sx={{
-                            alignItems: "flex-start",
-                            width: "100%",
-                            position: "relative",
-                            zIndex: 1,
-                            pointerEvents: "auto",
-                        }}
-                    >
-
                         {/* Title: dissolves + moves up first on desktop */}
                         <Typography
                             className="ProjectCard-title"
@@ -173,7 +173,6 @@ export default function ProjectCard({
                         >
                             {description}
                         </Typography>
-                    </Stack>
 
                 </Stack>
             </Box>

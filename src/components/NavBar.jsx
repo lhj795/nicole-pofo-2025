@@ -14,15 +14,9 @@ const navLinks = [
   { label: "Pottery", to: "/pottery" },
 ];
 
-export default function NavBar({ collapsed }) {
+export default function NavBar() {
   const location = useLocation();
 
-  // Detect if on home page
-  const isHome = location.pathname === "/";
-
-  // Home page → animate when collapsed == true
-  // Other pages → always visible
-  const showTools = isHome ? collapsed : true;
 
   return (
     <AppBar
@@ -37,6 +31,7 @@ export default function NavBar({ collapsed }) {
         borderBottom: "none",
         backdropFilter: "none",
         pointerEvents: "none", // allow blob interaction — buttons will override this
+        zIndex: "99999",
       }}
     >
       <Toolbar
@@ -54,9 +49,6 @@ export default function NavBar({ collapsed }) {
           sx={{
             display: "flex",
             gap: 2,
-            pointerEvents: showTools ? "auto" : "none", // clickable only when visible
-            opacity: showTools ? 1 : 0,
-            transform: showTools ? "translateY(0)" : "translateY(8px)",
             transition: "opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s",
           }}
         >
@@ -74,7 +66,11 @@ export default function NavBar({ collapsed }) {
                   color: "text.primary",
                   fontWeight: active ? 400 : 360,
                   opacity: active ? 1 : 0.75,
-                  "&:hover": { opacity: 1 },
+                  "&:hover": { 
+                    opacity: 1,
+                    backgroundColor: "rgba(145,165,181,0.5)",
+                    mixBlendMode: "color-burn",
+                  },
                   pointerEvents: "auto",
                 }}
               >
