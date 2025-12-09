@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@keyframes blob-wobble {
+  0% {
+    border-radius: 60% 40% 60% 40%;
+  }
+  25% {
+    border-radius: 50% 60% 45% 55%;
+  }
+  50% {
+    border-radius: 40% 60% 60% 40%;
+  }
+  75% {
+    border-radius: 55% 45% 50% 50%;
+  }
+  100% {
+    border-radius: 60% 40% 60% 40%;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+}
