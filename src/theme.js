@@ -2,10 +2,16 @@
 import { createTheme } from "@mui/material/styles";
 
 const displayFont =
-  '"Neue Haas Grotesk Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+  '"NHaasDisplayThin", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
-const textFont =
-  '"Neue Haas Grotesk Text", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+const displayItalicsFont =
+  '"NHaasDisplayLightItalic", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+
+const textFont = 
+  '"NHaasDisplayRoman", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+
+const boldFont = 
+  '"NHaasDisplayMedium", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
 const theme = createTheme({
   typography: {
@@ -15,7 +21,6 @@ const theme = createTheme({
     // Default font for anything that does not override
     fontFamily: textFont,
 
-    // Custom display variant (largest, 90.44 px)
     display: {
       fontFamily: displayFont,
       fontWeight: 100, // Light
@@ -26,21 +31,19 @@ const theme = createTheme({
     },
 
     // Heading scale using augmented fourth from 16 px base
-    // All display headings are Light
     h1: {
       fontFamily: displayFont,
       fontWeight: 200,
       fontSize: "3.28rem", // 52.44 px
-      lineHeight: 1.05,
+      lineHeight: 1,
       letterSpacing: "0.02em",
       textTransform: "uppercase",
     },
     h2: {
       fontFamily: displayFont,
-      fontWeight: 240,
+      fontWeight: 200,
       fontSize: "2.87rem", // 45.96 px
       lineHeight: 1.1,
-      letterSpacing: "0.02em",
     },
     h3: {
       fontFamily: displayFont,
@@ -52,7 +55,19 @@ const theme = createTheme({
       fontFamily: displayFont,
       fontWeight: 300,
       fontSize: "1.93rem", // 30.94 px
-      lineHeight: 1.2,
+      lineHeight: 1.15,
+    },
+    h4Italic: {
+      fontFamily: displayItalicsFont,
+      fontWeight: 300,
+      fontSize: "1.93rem", // 30.94 px
+      lineHeight: 1.15,
+    },
+    h4Bold: {
+      fontFamily: boldFont,
+      fontWeight: 401,
+      fontSize: "1.93rem", // 30.94 px
+      lineHeight: 1.15,
     },
     h5: {
       fontFamily: displayFont,
@@ -60,29 +75,61 @@ const theme = createTheme({
       fontSize: "1.70rem", // 27.12 px
       lineHeight: 1.25,
     },
+    h5Italic: {
+      fontFamily: displayItalicsFont,
+      fontWeight: 300,
+      fontSize: "1.70rem", // 27.12 px
+      lineHeight: 1.15,
+    },
+    h5Bold: {
+      fontFamily: boldFont,
+      fontWeight: 300,
+      fontSize: "1.70rem", // 27.12 px
+      lineHeight: 1.25,
+    },
     h6: {
       fontFamily: displayFont,
+      fontWeight: 320,
+      fontSize: "1.414rem", 
+      lineHeight: 1.2,
+    },
+    projectTitle: {
+      fontFamily: textFont,
+      fontWeight: 320,
+      fontSize: "1.414rem", 
+      lineHeight: 1.2,
+    },
+    h6Italic: {
+      fontFamily: displayItalicsFont,
       fontWeight: 300,
-      fontSize: "1.49rem", // 23.77 px
-      lineHeight: 1.3,
+      fontSize: "1.414rem",
+      lineHeight: 1.15,
+    },
+    h6Bold: {
+      fontFamily: boldFont,
+      fontSize: "1.414rem", 
+      lineHeight: 1.2,
     },
 
     // Body text: Roman
     body1: {
       fontFamily: textFont,
-      fontWeight: 400, // Roman
       fontSize: "1rem", // 16 px
-      lineHeight: 1.3,
+      fontWeight: 400, // Roman
+      lineHeight: 1.5,
     },
-    // Slightly smaller body (on the same scale)
+    body1Bold: {
+      fontFamily: boldFont,
+      fontSize: "1rem", // 16 px
+      lineHeight: 1.5,
+    },
     body2: {
       fontFamily: textFont,
       fontWeight: 400, // Roman
       fontSize: "0.88rem", // ~14.02 px
-      lineHeight: 1.3,
+      lineHeight: 1.44,
     },
 
-    // Caption: smallest on the scale, Roman
     caption: {
       fontFamily: textFont,
       fontWeight: 400,
@@ -90,9 +137,15 @@ const theme = createTheme({
       letterSpacing: 0.3,
     },
 
-    // Subtitles and UI labels: Medium
+    // Subtitles and UI labels: Medium, need to return to this
     subtitle1: {
       fontFamily: textFont,
+      fontWeight: 500, // Medium
+      fontSize: "1.30rem", // 20.83 px
+      lineHeight: 1.3,
+    },
+    subtitle1Bold: {
+      fontFamily: boldFont,
       fontWeight: 500, // Medium
       fontSize: "1.30rem", // 20.83 px
       lineHeight: 1.3,
@@ -118,14 +171,6 @@ const theme = createTheme({
       letterSpacing: 2,
     },
 
-    // Home page project titles
-    projectTitle: {
-      fontFamily: '"Neue Haas Grotesk Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-      fontWeight: 320,
-      fontSize: "1.414rem",
-      letterSpacing: 0,
-      lineHeight: 1.2,
-    },
   },
 
   palette: {

@@ -57,6 +57,7 @@ export default function Home() {
             imageSrc: imgDXC,
             bgColor: "#E7D1FF",
             descriptionColor: "#8556B8",
+            to: "/dxc",
         },
         {
             id: "apnimed",
@@ -67,6 +68,7 @@ export default function Home() {
             imageSrc: imgApnimed,
             bgColor: "#C0C1FC",
             descriptionColor: "#6059B5",
+            to: "/apnimed",
         },
         {
             id: "marcor",
@@ -77,16 +79,18 @@ export default function Home() {
             imageSrc: imgMarCor,
             bgColor: "#D5EDFB",
             descriptionColor: "#457593",
+            to: "/marcor",
         },
         {
             id: "10x",
-            title: "A–Z Recruiting Solution",
+            title: "A-Z Recruiting Solution",
             description:
                 "Humanizing the hiring journey with workflows that serve people—not just processes.",
             logoSrc: logo10x,
             imageSrc: img10x,
             bgColor: "#B6D4FF",
             descriptionColor: "#356BBA",
+            to: "/10xfinders",
         },
         {
             id: "able",
@@ -97,6 +101,7 @@ export default function Home() {
             imageSrc: imgAble,
             bgColor: "#FFD04D",
             descriptionColor: "#886400",
+            to: "/able",
         },
         {
             id: "lightly",
@@ -107,6 +112,7 @@ export default function Home() {
             imageSrc: imgLightly,
             bgColor: "#FFAB40",
             descriptionColor: "#965400",
+            to: "/lightly",
         },
         {
             id: "involv",
@@ -117,6 +123,7 @@ export default function Home() {
             imageSrc: imgInvolv,
             bgColor: "#D4DBEB",
             descriptionColor: "#616A7F",
+            to: "/involv"
         },
         {
             id: "amc",
@@ -127,6 +134,7 @@ export default function Home() {
             imageSrc: imgAMC,
             bgColor: "#CF2541",
             descriptionColor: "#980019",
+            to: "/amc"
         },
     ];
 
@@ -291,6 +299,7 @@ export default function Home() {
                                 imageSrc={project.imageSrc}
                                 bgColor={project.bgColor}
                                 descriptionColor={project.descriptionColor}
+                                to={project.to}
                             />
                         ))}
                     </Box>

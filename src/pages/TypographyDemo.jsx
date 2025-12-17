@@ -128,10 +128,10 @@ export default function App() {
 
           <TypeRow
             label="Project title"
-            variant="projectTitle"
+            variant="h6"
             note="Display Light, 22.62 px"
           >
-            <Typography variant="projectTitle">
+            <Typography variant="h6">
               Heading for project sections
             </Typography>
           </TypeRow>

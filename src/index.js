@@ -4,6 +4,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import theme from "./theme";
+import "./styles/fonts.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

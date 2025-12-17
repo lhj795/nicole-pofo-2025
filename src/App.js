@@ -4,8 +4,14 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import theme from "./theme";
+import "./styles/fonts.css";
 import TypographyDemo from "./pages/TypographyDemo";
-import GradientCursor from "./components/GradientCursor";
+import GradientCursor from "./components/CustomCursor";
+import Presence from "./pages/Presence";
+
+// Projects
+import Lightly from "./pages/projects/Lightly";
+import DXC from "./pages/projects/DXC";
 
 export default function App() {
   return (
@@ -19,8 +25,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/typography" element={<TypographyDemo />} />
-        {/* <Route path="/presence" element={<Presence />} /> */}
+        <Route path="/presence" element={<Presence />} />
         {/* <Route path="/pottery" element={<Pottery />} /> */}
+        <Route path="/lightly" element={<Lightly />} />
+        <Route path="/dxc" element={<DXC />} />
       </Routes>
     </ThemeProvider>
   );
