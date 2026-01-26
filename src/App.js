@@ -12,6 +12,7 @@ import Presence from "./pages/Presence";
 // Projects
 import Lightly from "./pages/projects/Lightly";
 import DXC from "./pages/projects/DXC";
+import Apnimed from "./pages/projects/Apnimed"
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
         {/* <Route path="/pottery" element={<Pottery />} /> */}
         <Route path="/lightly" element={<Lightly />} />
         <Route path="/dxc" element={<DXC />} />
+        <Route path="/apnimed" element={<Apnimed />} />
       </Routes>
     </ThemeProvider>
   );

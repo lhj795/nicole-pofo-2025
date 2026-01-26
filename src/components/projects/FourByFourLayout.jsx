@@ -34,7 +34,7 @@ export function FourByFourLayout({
       <GridItem
         cols={leftCols}
         order={leftOrder}
-        sx={{ display: "flex", flexDirection: "column", gap: 1, width: "100%" }}
+        sx={{ display: "flex", flexDirection: "column", gap: 1, width: "100%", height: "100%" }}
       >
         {left}
       </GridItem>
@@ -43,7 +43,7 @@ export function FourByFourLayout({
       <GridItem
         cols={rightCols}
         order={rightOrder}
-        sx={{ display: "flex", flexDirection: "column", gap: 1, width: "100%" }}
+        sx={{ display: "flex", flexDirection: "column", gap: 1, width: "100%", height: "100%" }}
       >
         {right}
       </GridItem>

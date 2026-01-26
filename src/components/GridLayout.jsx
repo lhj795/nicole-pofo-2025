@@ -33,7 +33,6 @@ export function GridLayout({
     >
       <Box
         sx={{
-          // display: "grid",
           display: { xs: "flex", md: "grid" },
           flexDirection: { xs: "column", md: "initial" },
           gridTemplateColumns: `repeat(${columns}, 1fr)`,
@@ -48,6 +47,7 @@ export function GridLayout({
           pb: pb,
           pr: pr,
           pl: pl,
+          height: "100%",
         }}
       >
         {children}
@@ -56,7 +56,6 @@ export function GridLayout({
   );
 }
 
-// Item: defines column span, order, and local styling
 export function GridItem({
   cols,   // e.g. { xs: "1 / 13", md: "2 / 6" }
   order,  // e.g. { xs: 2, md: 1 }

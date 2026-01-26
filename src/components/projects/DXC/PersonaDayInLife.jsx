@@ -3,93 +3,223 @@ import { GridLayout, GridItem } from "../../GridLayout";
 import WbTwilight from "@mui/icons-material/WbTwilight";
 import Bedtime from "@mui/icons-material/Bedtime";
 
-export default function PersonaDayInLife({ persona, personaBg }) {
+function RichText({ segments, variant = "body2" }) {
+  return (
+    <Typography variant={variant} component="p">
+      {segments.map((seg, i) => (
+        <Box
+          key={i}
+          component="span"
+          sx={{ fontWeight: seg.bold ? 600 : 400 }}
+        >
+          {seg.content}
+        </Box>
+      ))}
+    </Typography>
+  );
+}
+
+
+export default function PersonaDayInLife({ persona }) {
+  const day = persona?.day ?? {};
+  const description = day.dayDescription ?? {};
+  const tasks = day.tasks ?? [];
+
   return (
     <Box
       sx={{
-        mt: 3,
         bgcolor: persona?.cardBg,
+        border: `1px solid ${persona?.personaBg}`,
         borderRadius: "12px",
+        color: persona?.textColor,
       }}
     >
       <GridLayout
-        py={4}
-        px={4}
+        px={{ xs: 3, md: 4 }} 
+        py={{ xs: 3, md: 4 }}
         gapY={3}
-        mt={3}
-        sx={{
-          bgcolor: "#FCFCFC",
-          borderRadius: "8px",
-          mb: 4,
-          display: "flex",
-          justifyContent: "center",
-        }}
       >
-        <GridItem cols={"1/13"} sx={{ pb: 2, borderBottom: "1px solid rgba(0,0,0,0.12)" }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Typography variant="h2" sx={{ width: "fit-content" }}>
-              A day in <br /> {persona?.name}'s life
-            </Typography>
+        <GridItem cols={"1/13"} sx={{ pb: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexDirection: { xs: "column", md: "row" },
+              gap: { xs: 2, md: 3 },
+            }}
+          >
+
+            {/* Left */}
             <Box
-              sx={{ 
-                width: "40%",
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: { xs: 1, md: 0 },
+                width: "100%",
+              }}
+            >
+              <Typography variant="h3">
+                A day in life of
+              </Typography>
+              <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                <Box
+                  component="img"
+                  src={persona?.nuanceIconSrc}
+                  alt={persona?.name}
+                  sx={{
+                    height: { xs: "2rem", md: "2.5rem" },
+                    objectFit: "contain",
+                  }}
+                />
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontSize: { xs: "2.21rem", md: "2.87rem" }
+                  }}
+                >
+                  {persona?.name}
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* Right */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "60%" },
                 height: "-webkit-fill-available",
                 display: "flex",
                 alignItems: "center",
-                p: 2,
-                bgcolor: persona?.panelBg,
-                borderRadius: "4px",
+                p: { xs: 0, md: 2 },
+                bgcolor: { xs: persona?.cardBg, md: persona?.panelBg },
+                borderRadius: "8px",
               }}
-            > 
-            <Typography variant="body1">
-              {persona?.dayDescription}
-            </Typography>
+            >
+              <Typography variant="body1" sx={{ opacity: 0.7 }}>
+                {description}
+              </Typography>
             </Box>
           </Box>
         </GridItem>
+
+        {/* Content */}
         <GridItem cols={"1/13"}>
-          <Box 
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            mb: 1.5,
-          }}
-          >
-            <Box sx={{display: "flex", gap: 1}}>
-              <WbTwilight/>
-              <Typography variant="subtitle1">Morning</Typography>
-            </Box>
-            <Box sx={{display: "flex", gap: 1}}>
-              <Typography variant="subtitle1">End of day</Typography>
-              <Bedtime/>
-            </Box>
-            </Box>
-          <Box sx={{ display: "flex", gap: 1 }}>
-            {/* Replace these boxes with your real “cards” + icons + images */}
-            {[
-              "Review critical system alerts for my customers and check overnight performance reports.",
-              "Sift through internal and external comm channels to find important inquiries.",
-              "Daily stand-up with teams to see delivery progress using Jira, OneNote, and Teams.",
-              "Attend a meeting to provide solution and pricing support for a new deal with cost estimates prepared with Pace.",
-              "Collect KPIs data from PowerBI - incident, changes, success and SLA metrics for an upcoming performance report.",
-              "Join a vendor call to discuss compliance updates and contract renewals using client SLA documents.",
-              "Manually update documentation in ESL/CMDB for a data center migration project.",
-            ].map((text) => (
-              <Box
-                sx={{
-                  bgcolor: persona?.personaBg,
-                  borderRadius: "4px",
-                  p: 1,
-                  minHeight: 140,
-                  flex: 1,
-                }}
-              >
-                <Typography variant="body2">{text}</Typography>
+          <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-between",
+                mb: 1.5,
+              }}
+            >
+              <Box sx={{ display: "flex", gap: 1 }}>
+                <WbTwilight sx={{ color: persona?.accent }} />
+                <Typography variant="subtitle1">Morning</Typography>
               </Box>
-            ))}
+              <Box sx={{ display: "flex", gap: 1 }}>
+                <Typography variant="subtitle1">End of day</Typography>
+                <Bedtime sx={{ color: persona?.accent }} />
+              </Box>
+            </Box>
+
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${tasks.length}, minmax(0, 1fr))`,
+                gap: 1,
+                alignItems: "stretch",
+              }}
+            >
+              {/* Tasks row */}
+              {tasks.map((t, idx) => (
+                <Box
+                  key={`card-${idx}`}
+                  sx={{
+                    bgcolor: persona?.panelBg,
+                    borderRadius: "6px",
+                    p: 1.5,
+                  }}
+                >
+                  <RichText segments={t.text} />
+                </Box>
+              ))}
+
+              {/* Quotes row */}
+              {tasks.map((t, idx) => (
+                <Box key={`quote-${idx}`} sx={{ px: 0.5 }}>
+                  {t.quote ? (
+                    <Typography
+                      variant="body2"
+                      sx={{ mt: 1, fontStyle: "italic", opacity: 0.7 }}
+                    >
+                      “{t.quote}”
+                    </Typography>
+                  ) : (
+                    <Box sx={{ mt: 1, minHeight: 0 }} />
+                  )}
+                </Box>
+              ))}
+            </Box>
+          </Box>
+
+          {/* Mobile content */}
+          <Box sx={{ display: { xs: "flex", md: "none" }, gap: 2 }}>
+
+            {/* Morning night */}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignSelf: "stretch",
+              }}
+            >
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5, alignItems: "center" }}>
+                <WbTwilight sx={{ color: persona?.accent }} />
+                <Typography variant="subtitle2" sx={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
+                  Morning
+                </Typography>
+              </Box>
+
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5, alignItems: "center" }}>
+                <Typography variant="subtitle2" sx={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
+                  End of day
+                </Typography>
+                <Bedtime sx={{ color: persona?.accent }} />
+              </Box>
+            </Box>
+
+            {/* Content */}
+            <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 1 }}>
+              {tasks.map((t, idx) => (
+                <Box
+                  key={`xs-task-${idx}`}
+                  sx={{
+                    bgcolor: persona?.panelBg,
+                    borderRadius: "6px",
+                    p: 1.5,
+                  }}
+                >
+                  <RichText segments={t.text} />
+
+                  {t.quote && (
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        mt: 1.25,
+                        fontStyle: "italic",
+                        opacity: 0.7,
+                      }}
+                    >
+                      “{t.quote}”
+                    </Typography>
+                  )}
+                </Box>
+              ))}
+            </Box>
           </Box>
         </GridItem>
+
       </GridLayout>
     </Box>
   );

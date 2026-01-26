@@ -143,7 +143,7 @@ export default function ProjectCard({
                         {/* Title: dissolves + moves up first on desktop */}
                         <Typography
                             className="ProjectCard-title"
-                            variant="projectTitle"
+                            variant="h6Roman"
                             sx={{
                                 color: "text.primary",
                                 width: "100%",

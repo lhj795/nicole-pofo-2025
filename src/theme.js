@@ -93,7 +93,7 @@ const theme = createTheme({
       fontSize: "1.414rem", 
       lineHeight: 1.2,
     },
-    projectTitle: {
+    h6Roman: {
       fontFamily: textFont,
       fontWeight: 320,
       fontSize: "1.414rem", 
@@ -129,7 +129,12 @@ const theme = createTheme({
       fontSize: "0.88rem", // ~14.02 px
       lineHeight: 1.44,
     },
-
+    body2Bold: {
+      fontFamily: boldFont,
+      fontWeight: 400, // Roman
+      fontSize: "0.88rem", // ~14.02 px
+      lineHeight: 1.44,
+    },
     caption: {
       fontFamily: textFont,
       fontWeight: 400,
