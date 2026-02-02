@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React from "react";
+import { useTheme } from "@mui/material/styles";
 import { IconButton } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -6,7 +7,7 @@ import { GridLayout, GridItem } from "../../GridLayout";
 import { Box, Typography } from "@mui/material";
 
 export default function DXCPersonaPager({
-  children, // the centered "cage" content (your card)
+  children, // the content
   onPrev,
   onNext,
   disablePrev,
@@ -15,10 +16,23 @@ export default function DXCPersonaPager({
   footerLeft,
   footerRight,
 }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const pages = persona?.pages || [];
-  const totalPages = pages.length;
-  const currentPage = pages[activeIndex];
+
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+
+  const btnSx = {
+    width: 44,
+    height: 44,
+    bgcolor: isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.06)",
+    color: isDark ? "rgba(255,255,255,0.88)" : "rgba(0,0,0,0.72)",
+    "&:hover": {
+      bgcolor: isDark ? "rgba(255,255,255,0.16)" : "rgba(0,0,0,0.10)",
+    },
+    "&.Mui-disabled": {
+      bgcolor: isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.03)",
+      color: isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.25)",
+    },
+  };
 
   return (
     <GridLayout py={3}>
@@ -37,12 +51,7 @@ export default function DXCPersonaPager({
           onClick={onPrev}
           disabled={disablePrev}
           aria-label="Previous"
-          sx={{
-            width: 44,
-            height: 44,
-            bgcolor: "rgba(0,0,0,0.06)",
-            "&:hover": { bgcolor: "rgba(0,0,0,0.1)" },
-          }}
+          sx={btnSx}
         >
           <ChevronLeftIcon />
         </IconButton>
@@ -76,23 +85,23 @@ export default function DXCPersonaPager({
             {children}
           </Box>
 
-        {/* FOOTER */}
-        <Box
-          sx={{
-            mt: 1.5,
-            px: 0.5,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Typography variant="body1" sx={{ color: "text.secondary" }}>
-            {footerLeft}
-          </Typography>
-          <Typography variant="body1" sx={{ color: "text.secondary" }}>
-            {footerRight}
-          </Typography>
-        </Box>
+          {/* FOOTER */}
+          <Box
+            sx={{
+              mt: 1.5,
+              px: 0.5,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="body1" sx={{ color: "text.secondary" }}>
+              {footerLeft}
+            </Typography>
+            <Typography variant="body1" sx={{ color: "text.secondary" }}>
+              {footerRight}
+            </Typography>
+          </Box>
 
         </Box>
       </GridItem>
@@ -111,12 +120,7 @@ export default function DXCPersonaPager({
           onClick={onNext}
           disabled={disableNext}
           aria-label="Next"
-          sx={{
-            width: 44,
-            height: 44,
-            bgcolor: "rgba(0,0,0,0.06)",
-            "&:hover": { bgcolor: "rgba(0,0,0,0.1)" },
-          }}
+          sx={btnSx}
         >
           <ChevronRightIcon />
         </IconButton>

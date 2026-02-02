@@ -7,8 +7,10 @@ import PersonaOverview from "./PersonaOverview";
 import PersonaDayInLife from "./PersonaDayInLife";
 import PersonaPainPoint from "./PersonaPainPoint";
 import PersonaInformation from "./PersonaInformation";
+import { useTheme } from "@mui/material/styles";
 
-function PersonaSelector({ personas, selectedId, onSelect }) {
+function PersonaSelector({ personas, selectedId, onSelect, mode }) {
+
   return (
     <Box
       sx={{
@@ -19,6 +21,7 @@ function PersonaSelector({ personas, selectedId, onSelect }) {
     >
       {personas.map((persona) => {
         const isActive = persona.id === selectedId;
+        const c = persona.colors?.[mode] ?? persona.colors?.light ?? {};
         return (
           <Box
             key={persona.id}
@@ -38,7 +41,7 @@ function PersonaSelector({ personas, selectedId, onSelect }) {
               justifyContent: "center",
               alignItems: "flex-end",
               margin: 0,
-              backgroundColor: persona.personaBg,
+              backgroundColor: c.personaBg ?? persona.personaBg,
               borderRadius: 999,
               overflow: "hidden",
               outline: "none",
@@ -82,6 +85,10 @@ export default function PersonaSection() {
   const activePage = selectedPersona.pages[pageIndex].id;
   const activePageLabel = pages[pageIndex]?.label ?? "";
 
+  // Light Dark Modes
+  const theme = useTheme();
+  const mode = theme.palette.mode;
+
   return (
     <Box sx={{ width: "100%" }}>
       {/* Selector row */}
@@ -91,6 +98,7 @@ export default function PersonaSection() {
             personas={personas}
             selectedId={selectedId}
             onSelect={setSelectedId}
+            mode={mode}
           />
         </GridItem>
       </GridLayout>

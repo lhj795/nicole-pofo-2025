@@ -1,10 +1,19 @@
 import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { GridLayout, GridItem } from "../../GridLayout";
 import Info from "@mui/icons-material/Info";
 import AutoAwesome from "@mui/icons-material/AutoAwesome";
 
 export default function PersonaInformation({ persona }) {
     const info = persona?.information;
+    const theme = useTheme();
+    const mode = theme.palette.mode;
+
+    const c = persona?.colors?.[mode] ?? persona?.colors?.light ?? {};
+    const personaBg = c.personaBg ?? persona?.personaBg;
+    const panelBg = c.panelBg ?? persona?.panelBg;
+    const accent = c.accent ?? persona?.accent;
+
     const displayName = info?.title?.nameOverride || persona?.name;
     const quote = persona?.information?.quote;
 
@@ -12,8 +21,8 @@ export default function PersonaInformation({ persona }) {
         <Box
             sx={{
                 bgcolor: persona?.cardBg,
-                border: `1px solid ${persona?.personaBg}`,
-                borderRadius: "12px", 
+                border: `1px solid ${personaBg}`,
+                borderRadius: "12px",
                 color: persona?.textColor,
             }}
         >
@@ -23,7 +32,7 @@ export default function PersonaInformation({ persona }) {
                     <Box sx={{ height: "100%", display: "flex", flexDirection: "column", gap: 8, pr: 1 }}>
                         <Typography variant="h3">
                             Information and insights OASIS could play a role for{" "}
-                            <Box component="span" sx={{ color: persona?.accent }}>
+                            <Box component="span" sx={{ color: accent }}>
                                 {displayName}
                             </Box>
                         </Typography>
@@ -45,7 +54,7 @@ export default function PersonaInformation({ persona }) {
                 >
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, flex: 1, height: "fit-content" }}>
                         {/* Title */}
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: persona?.accent }}>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 1, color: accent }}>
                             <Info />
                             <Typography variant="h6Bold">
                                 Information to rely on
@@ -54,7 +63,7 @@ export default function PersonaInformation({ persona }) {
                         {/* Info list */}
                         <Box
                             sx={{
-                                bgcolor: persona?.panelBg,
+                                bgcolor: panelBg,
                                 borderRadius: "8px",
                                 px: 2,
                                 py: 0.5,
@@ -70,7 +79,7 @@ export default function PersonaInformation({ persona }) {
                                             borderBottom:
                                                 idx === arr.length - 1
                                                     ? "none"
-                                                    : `1px solid ${persona?.personaBg}`,
+                                                    : `1px solid ${personaBg}`,
                                         }}
                                     >
                                         <Typography variant="body1Bold">{it.title}</Typography>
@@ -83,7 +92,7 @@ export default function PersonaInformation({ persona }) {
                         </Box>
                     </Box>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 1, flex: 1 }}>
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1, color: persona?.accent }}>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1, color: accent }}>
                             <AutoAwesome />
                             <Typography variant="h6Bold">
                                 Insights they want
@@ -94,10 +103,10 @@ export default function PersonaInformation({ persona }) {
                             <Box
                                 key={idx}
                                 sx={{
-                                    bgcolor: persona?.panelBg,
+                                    bgcolor: panelBg,
                                     borderRadius: "8px",
                                     p: 2,
-                                    borderLeft: `4px solid ${persona?.accent}`,
+                                    borderLeft: `4px solid ${accent}`,
                                     width: "100%",
                                 }}
                             >

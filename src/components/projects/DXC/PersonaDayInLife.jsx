@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { GridLayout, GridItem } from "../../GridLayout";
 import WbTwilight from "@mui/icons-material/WbTwilight";
 import Bedtime from "@mui/icons-material/Bedtime";
@@ -24,18 +25,24 @@ export default function PersonaDayInLife({ persona }) {
   const day = persona?.day ?? {};
   const description = day.dayDescription ?? {};
   const tasks = day.tasks ?? [];
+  const theme = useTheme();
+  const mode = theme.palette.mode;
+  const c = persona?.colors?.[mode] ?? persona?.colors?.light ?? {};
+  const personaBg = c.personaBg ?? persona?.personaBg;
+  const panelBg = c.panelBg ?? persona?.panelBg;
+  const accent = c.accent ?? persona?.accent;
 
   return (
     <Box
       sx={{
         bgcolor: persona?.cardBg,
-        border: `1px solid ${persona?.personaBg}`,
+        border: `1px solid ${personaBg}`,
         borderRadius: "12px",
         color: persona?.textColor,
       }}
     >
       <GridLayout
-        px={{ xs: 3, md: 4 }} 
+        px={{ xs: 3, md: 4 }}
         py={{ xs: 3, md: 4 }}
         gapY={3}
       >
@@ -90,7 +97,7 @@ export default function PersonaDayInLife({ persona }) {
                 display: "flex",
                 alignItems: "center",
                 p: { xs: 0, md: 2 },
-                bgcolor: { xs: persona?.cardBg, md: persona?.panelBg },
+                bgcolor: { xs: persona?.cardBg, md: panelBg },
                 borderRadius: "8px",
               }}
             >
@@ -113,12 +120,12 @@ export default function PersonaDayInLife({ persona }) {
               }}
             >
               <Box sx={{ display: "flex", gap: 1 }}>
-                <WbTwilight sx={{ color: persona?.accent }} />
+                <WbTwilight sx={{ color: accent }} />
                 <Typography variant="subtitle1">Morning</Typography>
               </Box>
               <Box sx={{ display: "flex", gap: 1 }}>
                 <Typography variant="subtitle1">End of day</Typography>
-                <Bedtime sx={{ color: persona?.accent }} />
+                <Bedtime sx={{ color: accent }} />
               </Box>
             </Box>
 
@@ -135,7 +142,7 @@ export default function PersonaDayInLife({ persona }) {
                 <Box
                   key={`card-${idx}`}
                   sx={{
-                    bgcolor: persona?.panelBg,
+                    bgcolor: panelBg,
                     borderRadius: "6px",
                     p: 1.5,
                   }}
@@ -175,7 +182,7 @@ export default function PersonaDayInLife({ persona }) {
               }}
             >
               <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5, alignItems: "center" }}>
-                <WbTwilight sx={{ color: persona?.accent }} />
+                <WbTwilight sx={{ color: accent }} />
                 <Typography variant="subtitle2" sx={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
                   Morning
                 </Typography>
@@ -185,7 +192,7 @@ export default function PersonaDayInLife({ persona }) {
                 <Typography variant="subtitle2" sx={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>
                   End of day
                 </Typography>
-                <Bedtime sx={{ color: persona?.accent }} />
+                <Bedtime sx={{ color: accent }} />
               </Box>
             </Box>
 
@@ -195,7 +202,7 @@ export default function PersonaDayInLife({ persona }) {
                 <Box
                   key={`xs-task-${idx}`}
                   sx={{
-                    bgcolor: persona?.panelBg,
+                    bgcolor: panelBg,
                     borderRadius: "6px",
                     p: 1.5,
                   }}

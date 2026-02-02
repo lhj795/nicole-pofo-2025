@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import CursorLink from "../../components/CursorLink";
 import NavBar from "../../components/NavBar";
 import { GridLayout, GridItem } from "../../components/GridLayout";
@@ -12,6 +13,29 @@ import { loadMedia } from "../../utils/loadMedia";
 const lightly = loadMedia("lightly");
 
 const LightlyPage = () => {
+
+    const lightlyTheme = {
+        light: {
+            heroBg: "#FFAB40",
+            designProcessBg: "#e88401",
+            designProcessTitle: "#e88401",
+            designProcessDesc: "#703F00",
+            designProcessForeground: "#111111",
+            activityBg: "#F7971D",
+        },
+        dark: {
+            heroBg: "#9a5802",
+            designProcessBg: "#965500ff",
+            designProcessTitle: "#ff950a",
+            designProcessDesc: "#faaf4d",
+            designProcessForeground: "#E6E8EB",
+            activityBg: "#b86800ff",
+        },
+    };
+
+    const theme = useTheme();
+    const mode = theme.palette.mode;
+    const C = lightlyTheme[mode];
 
     return (
         <Box
@@ -27,8 +51,7 @@ const LightlyPage = () => {
             <NavBar />
 
             <ProjectHero
-                bgColor="#FFAB40"
-                foreground="#333"
+                bgColor={C.heroBg}
                 imgAlign="flex-start"
                 title="Lightly"
                 titleProps={{ sx: { fontFamily: "DMSans" } }}
@@ -104,10 +127,10 @@ const LightlyPage = () => {
             />
 
             <DesignProcessSection
-                bgColor="#FFAB40"
-                titleColor="#FFE0A3"
-                foreground="#111"
-                descColor="#703F00"
+                bgColor={C.designProcessBg}
+                titleColor={C.designProcessTitle}
+                foreground={C.designProcessForeground}
+                descColor={C.designProcessDesc}
                 diagram={
                     <Box
                         sx={{
@@ -120,18 +143,18 @@ const LightlyPage = () => {
                     >
                         <ProcessTrack
                             steps={["UX Research", "Market Study"]}
-                            color="#111"
-                            activityBg="#F7971D"
+                            foreground={C.designProcessForeground}
+                            activityBg={C.activityBg}
                         />
                         <ProcessTrack
                             steps={["Ideation", "Validation"]}
-                            color="#111"
-                            activityBg="#F7971D"
+                            foreground={C.designProcessForeground}
+                            activityBg={C.activityBg}
                         />
                         <ProcessTrack
                             steps={["Iteration", "Testing"]}
-                            color="#111"
-                            activityBg="#F7971D"
+                            foreground={C.designProcessForeground}
+                            activityBg={C.activityBg}
                         />
                     </Box>
                 }

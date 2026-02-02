@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography, Stack } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { GridLayout, GridItem } from "../../GridLayout";
 
 function PersonaProgressRow({ label, value, thumbColor, trackColor, textColor }) {
@@ -53,45 +54,48 @@ function PersonaNuanceItem({ text, iconSrc, textColor }) {
 
 export default function PersonaOverview({ persona }) {
     const overview = persona?.overview ?? {};
+    const theme = useTheme();
+    const mode = theme.palette.mode;
+    const c = persona?.colors?.[mode] ?? persona?.colors?.light ?? {};
     const {
         description,
-        roleBars,
-        responsibilities,
-        roleNuances,
+        roleBars = [],
+        responsibilities = [],
+        roleNuances = [],
         nuanceIconSize = 160,
         company,
     } = overview;
     const {
         name,
-        cardBg = "#FCFCFC",
-        panelBg,
-        personaBg,
         textColor = "#000",
-        accent,
         nuanceIconSrc,
         avatarSrc,
-    } = persona;
+    } = persona ?? {};
+    const personaBg = c.personaBg ?? persona?.personaBg;
+    const panelBg = c.panelBg ?? persona?.panelBg;
+    const accent = c.accent ?? persona?.accent;
 
     return (
         <Box
             sx={{
+                position: "relative",
                 display: "flex",
                 flexDirection: "column",
                 bgcolor: persona?.cardBg,
-                border: `1px solid ${persona?.personaBg}`,
                 borderRadius: "12px",
                 color: persona?.textColor,
+                border: `1px solid ${personaBg}`,
             }}
         >
             <GridLayout px={{ xs: 3, md: 4 }} py={{ xs: 3, md: 4 }} pr={{ md: 4, lg: 0 }} sx={{ height: "100%" }}>
                 {/* Column 1 */}
-                <GridItem cols={{ md: "1/13", lg: "1/5" }} 
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    height: "100%",
-                }}
+                <GridItem cols={{ md: "1/13", lg: "1/5" }}
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "100%",
+                    }}
                 >
 
                     {/* Top content */}

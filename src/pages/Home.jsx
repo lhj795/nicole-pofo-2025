@@ -16,6 +16,9 @@ import ProjectCard from "../components/ProjectCard";
 import BlobHeroCanvas from "../components/BlobHeroCanvas";
 import BlobLogo from "../components/BlobLogo";
 
+// Theme
+import { useTheme } from "@mui/material/styles";
+
 // Project hero images
 import img10x from "../assets/project-hero-images/10xHero.png";
 import imgAble from "../assets/project-hero-images/AbleHero.png";
@@ -54,6 +57,12 @@ export default function Home() {
         }, 250); // delay before body text rises in
         return () => clearTimeout(t);
     }, []);
+
+    // Theme
+    const theme = useTheme();
+    const isDark = theme.palette.mode === "dark";
+
+    const blobColor = isDark ? "#fff" : "#000";
 
     // PROJECT DATA
     const projects = [
@@ -151,13 +160,14 @@ export default function Home() {
     const TRANSITION_HEIGHT = 400;
 
     // Thin custom arrow SVG
+    const arrowColor = isDark ? "#fff" : "#000";
     const ThinArrow = () => (
         <svg
             width="25vh"
             height="25vh"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="black"
+            stroke={arrowColor}
             strokeWidth=".25"
         >
             <path d="M12 4v16" />
@@ -257,7 +267,7 @@ export default function Home() {
                         isolation: "isolate",
                     }}
                 >
-                    <BlobHeroCanvas active={true} />
+                    <BlobHeroCanvas active={true} color={blobColor} />
                 </Box>
             )}
 
@@ -293,7 +303,7 @@ export default function Home() {
             </Box>
 
             {/* INTRO SECTION */}
-             <Box
+            <Box
                 id="intro-section"
                 sx={{
                     position: "relative",

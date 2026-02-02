@@ -2,10 +2,15 @@
 import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
 export default function BlobLogo({ collapsed }) {
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+
+  const blobColor = isDark ? "#fff" : "#000";
 
   if (!collapsed) return null;
 
@@ -30,7 +35,7 @@ export default function BlobLogo({ collapsed }) {
           position: "absolute",
           inset: 0,
           borderRadius: "999px",
-          backgroundColor: "#000",
+          backgroundColor: blobColor,
           transition: "opacity 200ms ease",
           opacity: hovered ? 0 : 1,
         }}

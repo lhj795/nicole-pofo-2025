@@ -1,5 +1,6 @@
 // src/components/BlobHeroCanvas.jsx
 import React, { useEffect, useRef } from "react";
+import { useTheme } from "@mui/material/styles";
 
 class Blob {
   constructor(canvas) {
@@ -35,20 +36,14 @@ class Blob {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    pointsArray[0].solveWith(
-      pointsArray[points - 1],
-      pointsArray[1]
-    );
+    pointsArray[0].solveWith(pointsArray[points - 1], pointsArray[1]);
 
     let p0 = pointsArray[points - 1].position;
     let p1 = pointsArray[0].position;
     let _p2 = p1;
 
     ctx.beginPath();
-    ctx.moveTo(
-      (p0.x + p1.x) / 2,
-      (p0.y + p1.y) / 2
-    );
+    ctx.moveTo((p0.x + p1.x) / 2, (p0.y + p1.y) / 2);
 
     for (let i = 1; i < points; i++) {
       pointsArray[i].solveWith(
@@ -141,7 +136,7 @@ class Point {
       (-0.3 * this.radialEffect +
         (leftPoint.radialEffect - this.radialEffect) +
         (rightPoint.radialEffect - this.radialEffect)) *
-      this.elasticity -
+        this.elasticity -
       this.speed * this.friction;
   }
 
@@ -177,12 +172,8 @@ class Point {
   get position() {
     const center = this.parent.center;
     return {
-      x:
-        center.x +
-        this.components.x * (this.parent.radius + this.radialEffect),
-      y:
-        center.y +
-        this.components.y * (this.parent.radius + this.radialEffect),
+      x: center.x + this.components.x * (this.parent.radius + this.radialEffect),
+      y: center.y + this.components.y * (this.parent.radius + this.radialEffect),
     };
   }
 
@@ -194,7 +185,7 @@ class Point {
     if (typeof value === "number") this._elasticity = value;
   }
   get elasticity() {
-    return this._elasticity || 0.0005;  // a bit softer
+    return this._elasticity || 0.0005; // a bit softer
   }
 
   set friction(value) {
@@ -205,16 +196,24 @@ class Point {
   }
 }
 
-export default function BlobHeroCanvas({ active }) {
+export default function BlobHeroCanvas({ active, color: overrideColor } = {}) {
   const canvasRef = useRef(null);
   const blobRef = useRef(null);
+
+  const theme = useTheme();
+
+  // Theme token (if present) with a safe fallback
+  const themeColor = theme?.palette?.homeBlob?.main ?? "#000000";
+
+  // Allow callers (Home.jsx) to override, otherwise use theme token
+  const blobColor = overrideColor ?? themeColor;
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const blob = new Blob(canvas);
-    blob.color = "#000000"; // you can change this later
+    blob.color = blobColor;
     blob.radius = 150;
     blob.numPoints = 32;
     blob.position = { x: 0.5, y: 0.5 };
@@ -246,17 +245,26 @@ export default function BlobHeroCanvas({ active }) {
         const vector = { x: e.clientX - pos.x, y: e.clientY - pos.y };
         angle = Math.atan2(vector.y, vector.x);
         hover = false;
-        blob.color = "#000000";
+
+        // Return to the themed color instead of hard black
+        blob.color = blobColor;
       }
 
       if (typeof angle === "number") {
         let nearestPoint = null;
-        let distanceFromPoint = 100;
+        let distance = 1e10;
 
         blob.points.forEach((point) => {
-          if (Math.abs(angle - point.azimuth) < distanceFromPoint) {
+          const pointAngle = Math.atan2(
+            point.position.y - pos.y,
+            point.position.x - pos.x
+          );
+          const diff = Math.abs(angle - pointAngle);
+          const dist = Math.min(diff, Math.PI * 2 - diff);
+
+          if (dist < distance) {
+            distance = dist;
             nearestPoint = point;
-            distanceFromPoint = Math.abs(angle - point.azimuth);
           }
         });
 
@@ -265,9 +273,7 @@ export default function BlobHeroCanvas({ active }) {
             x: oldMousePoint.x - e.clientX,
             y: oldMousePoint.y - e.clientY,
           };
-          strength = Math.sqrt(
-            strength.x * strength.x + strength.y * strength.y
-          );
+          strength = Math.sqrt(strength.x * strength.x + strength.y * strength.y);
           strength = Math.min(strength * 10, 100);
           nearestPoint.acceleration = (strength / 100) * (hover ? -1 : 1);
         }
@@ -287,7 +293,7 @@ export default function BlobHeroCanvas({ active }) {
       window.removeEventListener("pointermove", handlePointerMove);
       blob.destroy();
     };
-  }, [active]);
+  }, [active, blobColor]);
 
   return (
     <canvas

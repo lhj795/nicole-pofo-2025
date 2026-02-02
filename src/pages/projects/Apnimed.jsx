@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import NavBar from "../../components/NavBar";
 import { GridLayout, GridItem } from "../../components/GridLayout";
 import { ProjectHero } from "../../components/projects/ProjectHero";
@@ -11,6 +12,27 @@ import { loadMedia } from "../../utils/loadMedia";
 const apnimed = loadMedia("apnimed");
 
 const ApnimedPage = () => {
+
+    const apnimedTheme = {
+            light: {
+                periwinkle: "#BDBEFC",
+                deepSea: "#E9EAFE",
+                patientText: "#000822",
+                clinicianText: "#002F65",
+                clinicianBg: "#E6F1FE",
+            },
+            dark: {
+                periwinkle: "#3B427D",
+                deepSea: "#292F52",
+                patientText: "#BDBEFC",
+                clinicianText: "#E6F1FE",
+                clinicianBg: "#1D3A5B",
+            },
+        };
+    
+        const theme = useTheme();
+        const mode = theme.palette.mode;
+        const C = apnimedTheme[mode];
 
     return (
         <Box
@@ -101,7 +123,7 @@ const ApnimedPage = () => {
 
             <DesignProcessSection
                 bgColor="#191F3F"
-                titleColor="#FFF3FD"
+                titleColor={C.patientText}
                 descColor="#FFF3FD"
                 diagram={
                     <Box
@@ -270,12 +292,12 @@ const ApnimedPage = () => {
                     py={2}
                     left={
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.25 }}>
-                            <Box sx={{ p: 1.5, background: "#BDBEFC", borderRadius: 0.5 }}>
+                            <Box sx={{ p: 1.5, background: C.periwinkle, borderRadius: 0.5 }}>
                                 <Typography variant="body1Bold" sx={{ mt: 1 }}>
                                     Patient key takeaways
                                 </Typography>
                             </Box>
-                            <Box sx={{ background: "#E9EAFE", borderRadius: 0.5 }}>
+                            <Box sx={{ background: C.deepSea, borderRadius: 0.5 }}>
                                 <Box component="ul" marker="disc">
                                     <Typography component="li" marker="disc">
                                         Patients fall out of the journey due to long wait times, lack of recognition to the health impact or motivation to improve health.
@@ -304,12 +326,12 @@ const ApnimedPage = () => {
                     }
                     right={
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.25, height: "100%" }}>
-                            <Box sx={{ p: 1.5, background: "#BDBEFC", borderRadius: 0.5 }}>
+                            <Box sx={{ p: 1.5, background: C.periwinkle, borderRadius: 0.5 }}>
                                 <Typography variant="body1Bold" sx={{ mt: 1 }}>
                                     Clinician key takeaways
                                 </Typography>
                             </Box>
-                            <Box sx={{ background: "#E9EAFE", borderRadius: 0.5, height: "100%" }}>
+                            <Box sx={{ background: C.deepSea, borderRadius: 0.5, height: "100%" }}>
                                 <Box component="ul" marker="disc" sx={{ height: "100%" }}>
                                     <Typography component="li" marker="disc">
                                         Clinicians typically disregard consumer tools and data (i.e., Apple watch, Fitbit, etc.).
@@ -366,12 +388,12 @@ const ApnimedPage = () => {
                 <GridLayout pb={10}>
                     <GridItem cols={{ xs: "1/13", md: "2/12", lg: "3/11" }} sx={{ mt: 2 }}>
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1.25 }}>
-                            <Box sx={{ p: 1.5, background: "#BDBEFC", borderRadius: 0.5 }}>
+                            <Box sx={{ p: 1.5, background: C.periwinkle, borderRadius: 0.5 }}>
                                 <Typography variant="body1Bold">
                                     Key takeaways
                                 </Typography>
                             </Box>
-                            <Box sx={{ background: "#E9EAFE", borderRadius: 0.5 }}>
+                            <Box sx={{ background: C.deepSea, borderRadius: 0.5 }}>
                                 <Box component="ul" marker="disc">
                                     <Typography component="li" marker="disc">
                                         Commercial products tends to show more comprehensive data visualization and biometrics context compared to medical products.
@@ -460,7 +482,7 @@ const ApnimedPage = () => {
             {/* Patient mobile app */}
             <GridLayout sx={{ color: "#FFF3FD" }} py={10} gapY={0} px={0}>
                 <GridItem cols={{ xs: "1/13", md: "2/12", lg: "3/11" }}>
-                    <Typography variant="h1" sx={{ color: "#000822", height: "42px" }}>Patient Mobile App</Typography>
+                    <Typography variant="h1" sx={{ color: C.patientText, height: "42px" }}>Patient Mobile App</Typography>
                 </GridItem>
                 <GridItem
                     cols={"1/13"}
@@ -625,14 +647,14 @@ const ApnimedPage = () => {
             />
 
             {/* Clinician web portal */}
-            <GridLayout sx={{ color: "#000822" }} py={10} gapY={0} px={0}>
+            <GridLayout py={10} gapY={0} px={0}>
                 <GridItem cols={{ xs: "1/13", md: "2/12", lg: "3/11" }}>
-                    <Typography variant="h1" sx={{ color: "#000822", height: "42px" }}>Clinician Web Portal</Typography>
+                    <Typography variant="h1" sx={{ color: C.clinicianText, height: "42px" }}>Clinician Web Portal</Typography>
                 </GridItem>
                 <GridItem
                     cols={"1/13"}
                     sx={{
-                        background: "#E6F1FE",
+                        background: C.clinicianBg,
                     }}
                 >
                     {/* mockup */}

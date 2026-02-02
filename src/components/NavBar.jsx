@@ -66,7 +66,7 @@ export default function NavBar() {
                   color: "text.primary",
                   fontWeight: active ? 400 : 360,
                   opacity: active ? 1 : 0.75,
-                  "&:hover": { 
+                  "&:hover": {
                     opacity: 1,
                     backgroundColor: "rgba(145,165,181,0.5)",
                     mixBlendMode: "color-burn",

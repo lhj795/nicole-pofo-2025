@@ -1,13 +1,14 @@
-// src/App.js
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import theme from "./theme";
 import "./styles/fonts.css";
 import TypographyDemo from "./pages/TypographyDemo";
 import GradientCursor from "./components/CustomCursor";
 import Presence from "./pages/Presence";
+
+// Light/Dark Mode
+import { getTheme } from "./theme";
 
 // Projects
 import Lightly from "./pages/projects/Lightly";
@@ -15,10 +16,28 @@ import DXC from "./pages/projects/DXC";
 import Apnimed from "./pages/projects/Apnimed"
 
 export default function App() {
+  const [mode, setMode] = useState("light");
+  const theme = useMemo(() => getTheme(mode), [mode]);
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
 
+      <button
+      onClick={() => setMode((m) => (m === "light" ? "dark" : "light"))}
+      style={{
+        position: "fixed",
+        top: 60,
+        right: 16,
+        zIndex: 20000,
+        background: "white",
+        border: "1px solid #ccc",
+        padding: "8px 10px",
+        borderRadius: 8,
+      }}
+    >
+      Theme Toggle
+    </button>
+      
+      <CssBaseline />
       {/* Custom cursor across the whole site */}
       <GradientCursor />
 

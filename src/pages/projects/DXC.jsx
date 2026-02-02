@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 // import CursorLink from "../../components/CursorLink";
 import NavBar from "../../components/NavBar";
 import { GridLayout, GridItem } from "../../components/GridLayout";
@@ -15,6 +16,39 @@ const dxc = loadMedia("dxc");
 const dxcPersona = loadMedia("dxc/persona");
 
 const DXCPage = () => {
+
+    const dxcTheme = {
+        light: {
+            heroBg: "#E7D1FF",
+            designProcessBg: "#5F249F",
+            designProcessTitle: "#5F249F",
+            designPrinciples: "#F2E8FF",
+            principleToken: "#FFF",
+            principleText: "#77628E",
+            barBg: "#E2E2E2",
+            dataOne: "#6B3F9B",
+            dataTwo: "#AF8ED3",
+            crossCut: "white",
+            ppTable: "#FFE6ED",
+        },
+        dark: {
+            heroBg: "#2d0e4f",
+            designProcessBg: "#2d0e4f",
+            designProcessTitle: "#7d32ce",
+            designPrinciples: "#44266dff",
+            principleToken: "rgba(255, 255, 255, 0.1)",
+            principleText: "#a68ec0",
+            barBg: "#272727ff",
+            dataOne: "#752cc4",
+            dataTwo: "#501c88",
+            crossCut: "#24272c",
+            ppTable: "#72183286",
+        },
+    };
+
+    const theme = useTheme();
+    const mode = theme.palette.mode;
+    const C = dxcTheme[mode];
 
     const journeyPages = [
         { id: "jm-1", label: "Ongoing Operations", src: dxc("JourneyMap01.png"), alt: "Journey map page 1" },
@@ -41,8 +75,8 @@ const DXCPage = () => {
             <NavBar />
 
             <ProjectHero
-                bgColor="#E7D1FF"
-                foreground="#121212"
+                bgColor={C.heroBg}
+                foreground="text.primary"
                 title={
                     <Box
                         component="img"
@@ -158,9 +192,8 @@ const DXCPage = () => {
             />
 
             <DesignProcessSection
-                bgColor="#5F249F"
-                titleColor="#FFE0A3"
-                foreground="#fff"
+                bgColor={C.designProcessBg}
+                titleColor={C.designProcessTitle}
                 descColor="rgba(255,255,255,0.55)"
                 diagram={
                     <Box
@@ -536,12 +569,12 @@ const DXCPage = () => {
                 />
                 <GridLayout gapX={0}>
                     <GridItem cols="1/3" sx={{ display: { md: "none", lg: "inherit" }, height: "100%", width: "100%" }}>
-                        <Box sx={{ bgcolor: "#F2E8FF", height: "100%" }} />
+                        <Box sx={{ bgcolor: C.designPrinciples, height: "100%" }} />
                     </GridItem>
                     <GridItem cols={{ xs: "1/13", md: "2/12", lg: "3/11" }}>
                         <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "column", lg: "row" }, gap: 1, width: "100%" }}>
                             {/* Tailored */}
-                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", flex: 1, p: 3, pl: { md: 3, lg: 0 }, gap: 1, borderRadius: { xs: "12px", md: "12px", lg: "0px 12px 12px 0px", } }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, flex: 1, p: 3, pl: { md: 3, lg: 0 }, gap: 1, borderRadius: { xs: "12px", md: "12px", lg: "0px 12px 12px 0px", } }}>
                                 <Typography variant="h4">
                                     Tailored
                                 </Typography>
@@ -550,23 +583,23 @@ const DXCPage = () => {
                                     each persona, use case, and context
                                 </Typography>
                                 <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row", lg: "column" }, gap: 1, mb: 2 }}>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         User centered
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Personalized
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Configurable
                                     </Box>
                                 </Box>
-                                <Typography variant="body1" sx={{ color: "#77628E" }}>
+                                <Typography variant="body1" sx={{ color: C.principleText }}>
                                     "Balancing personalization and customer needs with
                                     uniformity of platform experience is the goal."
                                 </Typography>
                             </Box>
                             {/* Dynamic */}
-                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", flex: 1, p: 3, gap: 1, width: "100%", borderRadius: "12px" }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, flex: 1, p: 3, gap: 1, width: "100%", borderRadius: "12px" }}>
                                 <Typography variant="h4">
                                     Dynamic
                                 </Typography>
@@ -575,23 +608,23 @@ const DXCPage = () => {
                                     and scenarios and adapts over time
                                 </Typography>
                                 <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row", lg: "column" }, gap: 1, mb: 2 }}>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Proactive
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Predictive
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Adaptive
                                     </Box>
                                 </Box>
-                                <Typography variant="body1" sx={{ color: "#77628E" }}>
+                                <Typography variant="body1" sx={{ color: C.principleText }}>
                                     "Can't just give operators dashboard diabetes.
                                     It needs to be curated for operators and what they do."
                                 </Typography>
                             </Box>
                             {/* Scalable */}
-                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", flex: 1, p: 3, gap: 1, borderRadius: "12px" }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, flex: 1, p: 3, gap: 1, borderRadius: "12px" }}>
                                 <Typography variant="h4">
                                     Scalable
                                 </Typography>
@@ -600,23 +633,23 @@ const DXCPage = () => {
                                     design system and component library
                                 </Typography>
                                 <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row", lg: "column" }, gap: 1, mb: 2 }}>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Uniform
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Efficient
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Modular
                                     </Box>
                                 </Box>
-                                <Typography variant="body1" sx={{ color: "#77628E" }}>
+                                <Typography variant="body1" sx={{ color: C.principleText }}>
                                     "A LEGO block approach to make services customizable
                                     to the customer journey, wherever it is."
                                 </Typography>
                             </Box>
                             {/* Transparent */}
-                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", flex: 1, p: 3, gap: 1, borderRadius: "12px" }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, flex: 1, p: 3, gap: 1, borderRadius: "12px" }}>
                                 <Typography variant="h4">
                                     Transparent
                                 </Typography>
@@ -625,23 +658,23 @@ const DXCPage = () => {
                                     metrics and insights with confidence
                                 </Typography>
                                 <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row", lg: "column" }, gap: 1, mb: 2 }}>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Visibility
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Concise
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Informative
                                     </Box>
                                 </Box>
-                                <Typography variant="body1" sx={{ color: "#77628E" }}>
+                                <Typography variant="body1" sx={{ color: C.principleText }}>
                                     "Like an open a war room, customer seeing exactly
                                     what DXC is doing to contain an issue, is important."
                                 </Typography>
                             </Box>
                             {/* Actionable */}
-                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", flex: 1, p: 3, pr: { md: 3, lg: 0 }, gap: 1, borderRadius: { xs: "12px", md: "12px", lg: "12px 0px 0px 12px", } }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, flex: 1, p: 3, pr: { md: 3, lg: 0 }, gap: 1, borderRadius: { xs: "12px", md: "12px", lg: "12px 0px 0px 12px", } }}>
                                 <Typography variant="h4">
                                     Actionable
                                 </Typography>
@@ -650,17 +683,17 @@ const DXCPage = () => {
                                     and automation to boost productivity
                                 </Typography>
                                 <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row", lg: "column" }, gap: 1, mb: 2 }}>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Supportive
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Productive
                                     </Box>
-                                    <Box sx={{ bgcolor: "white", py: 0.5, px: 2, borderRadius: 999 }}>
+                                    <Box sx={{ bgcolor: C.principleToken, py: 0.5, px: 2, borderRadius: 999 }}>
                                         Tangible
                                     </Box>
                                 </Box>
-                                <Typography variant="body1" sx={{ color: "#77628E" }}>
+                                <Typography variant="body1" sx={{ color: C.principleText }}>
                                     "Unified platform becomes a less hands-on more cost
                                     effective because it reduces human support."
                                 </Typography>
@@ -668,7 +701,7 @@ const DXCPage = () => {
                         </Box>
                     </GridItem>
                     <GridItem cols="11/13" sx={{ display: { md: "none", lg: "inherit" }, height: "100%" }}>
-                        <Box sx={{ bgcolor: "#F2E8FF", height: "100%" }} />
+                        <Box sx={{ bgcolor: C.designPrinciples, height: "100%" }} />
                     </GridItem>
                 </GridLayout>
             </Box>
@@ -1233,12 +1266,12 @@ const DXCPage = () => {
                 {/* Empty bar blocks */}
                 <GridItem cols={{ md: "1/2", lg: "1/3" }} sx={{ display: { xs: "none", md: "block", lg: "block" } }}>
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                        <Box sx={{ bgcolor: "#6B3F9B", height: "80px" }} />
-                        <Box sx={{ bgcolor: "#6B3F9B", height: "80px" }} />
-                        <Box sx={{ bgcolor: "#6B3F9B", height: "80px" }} />
-                        <Box sx={{ bgcolor: "#6B3F9B", height: "80px" }} />
-                        <Box sx={{ bgcolor: "#6B3F9B", height: "80px" }} />
-                        <Box sx={{ bgcolor: "#6B3F9B", height: "80px" }} />
+                        <Box sx={{ bgcolor: C.dataOne, height: "80px" }} />
+                        <Box sx={{ bgcolor: C.dataOne, height: "80px" }} />
+                        <Box sx={{ bgcolor: C.dataOne, height: "80px" }} />
+                        <Box sx={{ bgcolor: C.dataOne, height: "80px" }} />
+                        <Box sx={{ bgcolor: C.dataOne, height: "80px" }} />
+                        <Box sx={{ bgcolor: C.dataOne, height: "80px" }} />
                     </Box>
                 </GridItem>
 
@@ -1248,8 +1281,8 @@ const DXCPage = () => {
 
                         {/* Intelligent Mitigation */}
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#E2E2E2", height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
-                                <Box sx={{ bgcolor: "#6B3F9B", width: "97%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
+                            <Box sx={{ bgcolor: C.barBg, height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
+                                <Box sx={{ bgcolor: C.dataOne, width: "97%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
                                     <Box
                                         component="img"
                                         src={dxc("IMBar.svg")}
@@ -1261,14 +1294,14 @@ const DXCPage = () => {
                                     </Typography>
                                     <Typography variant="body1Bold">97%</Typography>
                                 </Box>
-                                <Box sx={{ bgcolor: "#AF8ED3", borderRadius: "0 8px 8px 0", width: "calc(2% + 8px)", ml: "-8px" }} />
+                                <Box sx={{ bgcolor: C.dataTwo, borderRadius: "0 8px 8px 0", width: "calc(2% + 8px)", ml: "-8px" }} />
                             </Box>
                         </Box>
 
                         {/* Tailored Data */}
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#E2E2E2", height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
-                                <Box sx={{ bgcolor: "#6B3F9B", width: "94%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
+                            <Box sx={{ bgcolor: C.barBg, height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
+                                <Box sx={{ bgcolor: C.dataOne, width: "94%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
                                     <Box
                                         component="img"
                                         src={dxc("TDBar.svg")}
@@ -1280,14 +1313,14 @@ const DXCPage = () => {
                                     </Typography>
                                     <Typography variant="body1Bold">94%</Typography>
                                 </Box>
-                                <Box sx={{ bgcolor: "#AF8ED3", borderRadius: "0 8px 8px 0", width: "calc(4% + 8px)", ml: "-8px" }} />
+                                <Box sx={{ bgcolor: C.dataTwo, borderRadius: "0 8px 8px 0", width: "calc(4% + 8px)", ml: "-8px" }} />
                             </Box>
                         </Box>
 
                         {/* Enhanced Collaboration */}
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#E2E2E2", height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
-                                <Box sx={{ bgcolor: "#6B3F9B", width: "92%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
+                            <Box sx={{ bgcolor: C.barBg, height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
+                                <Box sx={{ bgcolor: C.dataOne, width: "92%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
                                     <Box
                                         component="img"
                                         src={dxc("ECBar.svg")}
@@ -1299,14 +1332,14 @@ const DXCPage = () => {
                                     </Typography>
                                     <Typography variant="body1Bold">92%</Typography>
                                 </Box>
-                                <Box sx={{ bgcolor: "#AF8ED3", borderRadius: "0 8px 8px 0", width: "calc(7% + 8px)", ml: "-8px" }} />
+                                <Box sx={{ bgcolor: C.dataTwo, borderRadius: "0 8px 8px 0", width: "calc(7% + 8px)", ml: "-8px" }} />
                             </Box>
                         </Box>
 
                         {/* Shared Knowledge */}
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#E2E2E2", height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
-                                <Box sx={{ bgcolor: "#6B3F9B", width: "92%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
+                            <Box sx={{ bgcolor: C.barBg, height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
+                                <Box sx={{ bgcolor: C.dataOne, width: "92%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
                                     <Box
                                         component="img"
                                         src={dxc("SKBar.svg")}
@@ -1318,14 +1351,14 @@ const DXCPage = () => {
                                     </Typography>
                                     <Typography variant="body1Bold">92%</Typography>
                                 </Box>
-                                <Box sx={{ bgcolor: "#AF8ED3", borderRadius: "0 8px 8px 0", width: "calc(6% + 8px)", ml: "-8px" }} />
+                                <Box sx={{ bgcolor: C.dataTwo, borderRadius: "0 8px 8px 0", width: "calc(6% + 8px)", ml: "-8px" }} />
                             </Box>
                         </Box>
 
                         {/* Strategic Insights */}
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#E2E2E2", height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
-                                <Box sx={{ bgcolor: "#6B3F9B", width: "90%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
+                            <Box sx={{ bgcolor: C.barBg, height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
+                                <Box sx={{ bgcolor: C.dataOne, width: "90%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
                                     <Box
                                         component="img"
                                         src={dxc("SIBar.svg")}
@@ -1337,14 +1370,14 @@ const DXCPage = () => {
                                     </Typography>
                                     <Typography variant="body1Bold">90%</Typography>
                                 </Box>
-                                <Box sx={{ bgcolor: "#AF8ED3", borderRadius: "0 8px 8px 0", width: "calc(8% + 8px)", ml: "-8px" }} />
+                                <Box sx={{ bgcolor: C.dataTwo, borderRadius: "0 8px 8px 0", width: "calc(8% + 8px)", ml: "-8px" }} />
                             </Box>
                         </Box>
 
                         {/* Proactive Parter */}
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#E2E2E2", height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
-                                <Box sx={{ bgcolor: "#6B3F9B", width: "90%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
+                            <Box sx={{ bgcolor: C.barBg, height: { xs: "60px", md: "80px" }, borderRadius: "0 8px 8px 0", display: "flex" }}>
+                                <Box sx={{ bgcolor: C.dataOne, width: "90%", borderRadius: "0 8px 8px 0", height: "100%", py: 1, pr: 3, pl: { xs: 3, md: 0 }, display: "flex", gap: 1.5, alignItems: "center", color: "white", zIndex: 1 }}>
                                     <Box
                                         component="img"
                                         src={dxc("PPBar.svg")}
@@ -1356,7 +1389,7 @@ const DXCPage = () => {
                                     </Typography>
                                     <Typography variant="body1Bold">90%</Typography>
                                 </Box>
-                                <Box sx={{ bgcolor: "#AF8ED3", borderRadius: "0 8px 8px 0", width: "calc(6% + 8px)", ml: "-8px" }} />
+                                <Box sx={{ bgcolor: C.dataTwo, borderRadius: "0 8px 8px 0", width: "calc(6% + 8px)", ml: "-8px" }} />
                             </Box>
                         </Box>
 
@@ -1412,19 +1445,19 @@ const DXCPage = () => {
 
                     <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
                         <Box sx={{ display: "flex", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#6B3F9B", width: "20px", height: "20px", }} />
+                            <Box sx={{ bgcolor: C.dataOne, width: "20px", height: "20px", }} />
                             <Typography variant="body2">
                                 Important (5 or 4)
                             </Typography>
                         </Box>
                         <Box sx={{ display: "flex", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#AF8ED3", width: "20px", height: "20px", }} />
+                            <Box sx={{ bgcolor: C.dataTwo, width: "20px", height: "20px", }} />
                             <Typography variant="body2">
                                 3 or 2
                             </Typography>
                         </Box>
                         <Box sx={{ display: "flex", gap: 1 }}>
-                            <Box sx={{ bgcolor: "#E2E2E2", width: "20px", height: "20px", }} />
+                            <Box sx={{ bgcolor: C.barBg, width: "20px", height: "20px", }} />
                             <Typography variant="body2">
                                 Not important (1)
                             </Typography>
@@ -1574,7 +1607,7 @@ const DXCPage = () => {
                             <Box sx={{ height: "16px", mb: 1 }}>
                                 <Typography variant="body1">Customers</Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Analyze data for insights<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1582,7 +1615,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Ensuring the most up-to-date documentation<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1590,7 +1623,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Assess business impact of solutions<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1598,7 +1631,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Lack of visibility into project status<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1606,7 +1639,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Focus on sales over business value<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1614,7 +1647,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Identify the root cause of incidents<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1629,7 +1662,7 @@ const DXCPage = () => {
                             <Box sx={{ height: "16px", mb: 1 }}>
                                 <Typography variant="body1">DXC Employees</Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Compile and standardize data<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1637,7 +1670,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Low efforts on designs or process improvement<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1645,7 +1678,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Balance strategic initiatives and daily tasks<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1653,7 +1686,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Gaining clear visibility into project status<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1661,7 +1694,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Keep up with industry trends to propose solutions<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1669,7 +1702,7 @@ const DXCPage = () => {
                                     </Typography>
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#FFE6ED", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.ppTable, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Identify the root cause of incidents<br />
                                     <Typography variant="body2" component={"span"} sx={{ color: "text.secondary" }}>
@@ -1684,41 +1717,41 @@ const DXCPage = () => {
                             <Box sx={{ height: "16px", mb: 1 }}>
                                 <Typography variant="body1">Design Implications</Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#EAD6FF", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.designPrinciples, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Collaboration tools must ease handoffs, reduce noise
                                     through smart filtering, and give clear status snapshots
                                     across teams.
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#EAD6FF", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.designPrinciples, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     AI-driven recommendations may enable anticipatory
                                     support and relevance to industry/client needs,
                                     not just reactive service.
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#EAD6FF", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.designPrinciples, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Knowledge solutions must emphasize real-time updates,
                                     robust searchability, and role-specific surfacing of
                                     critical documents.
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#EAD6FF", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.designPrinciples, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Incident management with faster detection, predictive
                                     alerting, and cross-functional visibility to drive
                                     triage and resolution.
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#EAD6FF", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.designPrinciples, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Data viz and reporting must be executive-ready by default,
                                     support automated accuracy checks, and include insights.
                                 </Typography>
                             </Box>
-                            <Box sx={{ borderRadius: 0.5, background: "#EAD6FF", height: "120px", p: 1.5, width: "100%" }}>
+                            <Box sx={{ borderRadius: 0.5, background: C.designPrinciples, height: "120px", p: 1.5, width: "100%" }}>
                                 <Typography variant="body2">
                                     Bridge strategy-execution gap by visualizing value,
                                     prioritizing intelligently, and surfacing high-impact
@@ -1745,7 +1778,7 @@ const DXCPage = () => {
                             Cross-cutting themes:
                         </Typography>
                         <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row", lg: "column" }, gap: 1 }}>
-                            <Box sx={{ display: "flex", flexDirection: "column", p: 1.5, borderRadius: 0.5, background: "white", filter: "drop-shadow(0px 4px 8px #ec526641)", height: "fit-content", flex: 1, gap: 1 }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", p: 1.5, borderRadius: 0.5, background: C.crossCut, filter: "drop-shadow(0px 4px 8px #ec526641)", height: "fit-content", flex: 1, gap: 1 }}>
                                 <Box
                                     component="img"
                                     src={dxc("Pain.svg")}
@@ -1757,7 +1790,7 @@ const DXCPage = () => {
                                     inputs lead to downstream frustration everywhere.
                                 </Typography>
                             </Box>
-                            <Box sx={{ display: "flex", flexDirection: "column", p: 1.5, borderRadius: 0.5, background: "white", filter: "drop-shadow(0px 4px 8px #ec526641)", height: "fit-content", flex: 1, gap: 1 }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", p: 1.5, borderRadius: 0.5, background: C.crossCut, filter: "drop-shadow(0px 4px 8px #ec526641)", height: "fit-content", flex: 1, gap: 1 }}>
                                 <Box
                                     component="img"
                                     src={dxc("Pain.svg")}
@@ -1771,7 +1804,7 @@ const DXCPage = () => {
                             </Box>
                         </Box>
                         <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row", lg: "column" }, gap: 1 }}>
-                            <Box sx={{ display: "flex", flexDirection: "column", p: 1.5, borderRadius: 0.5, background: "white", filter: "drop-shadow(0px 4px 8px #ec526641)", height: "fit-content", flex: 1, gap: 1 }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", p: 1.5, borderRadius: 0.5, background: C.crossCut, filter: "drop-shadow(0px 4px 8px #ec526641)", height: "fit-content", flex: 1, gap: 1 }}>
                                 <Box
                                     component="img"
                                     src={dxc("Pain.svg")}
@@ -1783,7 +1816,7 @@ const DXCPage = () => {
                                     smoother execution and less firefighting.
                                 </Typography>
                             </Box>
-                            <Box sx={{ display: "flex", flexDirection: "column", p: 1.5, borderRadius: 0.5, background: "white", filter: "drop-shadow(0px 4px 8px #ec526641)", height: "fit-content", flex: 1, gap: 1 }}>
+                            <Box sx={{ display: "flex", flexDirection: "column", p: 1.5, borderRadius: 0.5, background: C.crossCut, filter: "drop-shadow(0px 4px 8px #ec526641)", height: "fit-content", flex: 1, gap: 1 }}>
                                 <Box
                                     component="img"
                                     src={dxc("Pain.svg")}
@@ -1828,7 +1861,7 @@ const DXCPage = () => {
                                     alt="Illustration of a lighthouse"
                                     sx={{ height: "100px", display: { xs: "none", md: "block" }, mx: 3 }}
                                 />
-                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", p: 3, gap: 1, borderRadius: { xs: "12px", md: "0px 12px 12px 0px", }, height: "100%" }}>
+                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, p: 3, gap: 1, borderRadius: { xs: "12px", md: "0px 12px 12px 0px", }, height: "100%" }}>
                                     <Typography variant="h4">
                                         Visible and Safeguarded
                                     </Typography>
@@ -1847,7 +1880,7 @@ const DXCPage = () => {
                                     alt="Illustration of two hands giving each other a high five"
                                     sx={{ height: "100px", display: { xs: "none", md: "block" }, mx: 3 }}
                                 />
-                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", p: 3, gap: 1, borderRadius: "12px", height: "100%" }}>
+                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, p: 3, gap: 1, borderRadius: "12px", height: "100%" }}>
                                     <Typography variant="h4">
                                         Intelligent with Confidence
                                     </Typography>
@@ -1865,7 +1898,7 @@ const DXCPage = () => {
                                     alt="Illustration of an hourglass"
                                     sx={{ height: "100px", display: { xs: "none", md: "block" }, mx: 3 }}
                                 />
-                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", p: 3, gap: 1, borderRadius: { xs: "12px", md: "12px 0 0 12px", lg: "12px" }, height: "100%" }}>
+                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, p: 3, gap: 1, borderRadius: { xs: "12px", md: "12px 0 0 12px", lg: "12px" }, height: "100%" }}>
                                     <Typography variant="h4">
                                         Simplify Workflow
                                     </Typography>
@@ -1888,7 +1921,7 @@ const DXCPage = () => {
                                     alt="Illustration of a sail boat"
                                     sx={{ height: "100px", display: { xs: "none", md: "block" }, mx: 3 }}
                                 />
-                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", p: 3, gap: 1, borderRadius: { xs: "12px", md: "0px 12px 12px 0px", lg: "12px" }, height: "100%" }}>
+                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, p: 3, gap: 1, borderRadius: { xs: "12px", md: "0px 12px 12px 0px", lg: "12px" }, height: "100%" }}>
                                     <Typography variant="h4">
                                         Built for Partnership
                                     </Typography>
@@ -1907,7 +1940,7 @@ const DXCPage = () => {
                                     alt="Illustration of an x mark like on a treasure map"
                                     sx={{ height: "100px", display: { xs: "none", md: "block" }, mx: 3 }}
                                 />
-                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", p: 3, gap: 1, borderRadius: "12px", height: "100%" }}>
+                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, p: 3, gap: 1, borderRadius: "12px", height: "100%" }}>
                                     <Typography variant="h4">
                                         Connect the Dots
                                     </Typography>
@@ -1926,7 +1959,7 @@ const DXCPage = () => {
                                     alt="Illustration of building blocks"
                                     sx={{ height: "100px", display: { xs: "none", md: "block" }, mx: 3 }}
                                 />
-                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: "#F2E8FF", p: 3, gap: 1, borderRadius: { xs: "12px", md: "12px 0 0 12px", }, height: "100%" }}>
+                                <Box sx={{ display: "flex", flexDirection: "column", bgcolor: C.designPrinciples, p: 3, gap: 1, borderRadius: { xs: "12px", md: "12px 0 0 12px", }, height: "100%" }}>
                                     <Typography variant="h4">
                                         Expand Over Time
                                     </Typography>
@@ -2154,8 +2187,8 @@ const DXCPage = () => {
                     py={10}
                     leftCols={{ xs: "1/13", md: "2/7", lg: "3/8" }}
                     rightCols={{ xs: "1/13", md: "7/12", lg: "8/11" }}
-                    leftOrder={{xs: 2, md: 1, lg: 1}}
-                    rightOrder={{xs: 1, md: 2, lg: 2}}
+                    leftOrder={{ xs: 2, md: 1, lg: 1 }}
+                    rightOrder={{ xs: 1, md: 2, lg: 2 }}
                     alignItems={"center"}
                     left={
                         <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
@@ -2173,7 +2206,7 @@ const DXCPage = () => {
                         </Box>
                     }
                     right={
-                        <Typography variant="h1" sx={{ textAlign: {xs: "left", md: "right"} }}>MVP Development</Typography>
+                        <Typography variant="h1" sx={{ textAlign: { xs: "left", md: "right" } }}>MVP Development</Typography>
                     }
                 />
 
@@ -2224,8 +2257,8 @@ const DXCPage = () => {
                             <Typography component={"span"} variant="body1Bold">
                                 brainstorm sessions,{" "}
                             </Typography>
-                            often inviting designers outside the project. I really 
-                            enjoyed adopting my new company's culture of fast 
+                            often inviting designers outside the project. I really
+                            enjoyed adopting my new company's culture of fast
                             hand-sketching before moving into UI design!
                         </Typography>
                     }
@@ -2249,8 +2282,8 @@ const DXCPage = () => {
                         <Typography variant="body1">
                             Each feature was{" "}
                             <Typography component={"span"} variant="body1Bold">
-                                 iterated rapidly, presented to the client for feedback, 
-                                 then refined and prototyped{" "}
+                                iterated rapidly, presented to the client for feedback,
+                                then refined and prototyped{" "}
                             </Typography>
                             for async review before documenting for dev handoff.
                         </Typography>
@@ -2275,9 +2308,9 @@ const DXCPage = () => {
                         <Typography variant="body1">
                             With design and dev overlapping,{" "}
                             <Typography component={"span"} variant="body1Bold">
-                                 we maintained tight specs{" "}
+                                we maintained tight specs{" "}
                             </Typography>
-                            and daily updates to ensure accuracy and completeness, 
+                            and daily updates to ensure accuracy and completeness,
                             as well as to reduce rework and keep everyone aligned.
                         </Typography>
                     }

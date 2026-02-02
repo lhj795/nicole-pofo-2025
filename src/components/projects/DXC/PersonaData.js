@@ -16,10 +16,23 @@ export const personas = [
       { id: "info", label: "Information and Insights" },
     ],
 
-    cardBg: "#FCFCFC",
-    personaBg: "#B2E9CC",
-    panelBg: "#E5FAEE",
-    accent: "#00A651",
+    cardBg: "background.paper",
+    textColor: "text.primary",
+
+    colors: {
+      light: {
+        personaBg: "#B2E9CC",
+        panelBg: "#E5FAEE",
+        accent: "#00A651",
+      },
+      dark: {
+        personaBg: "#004f25",
+        panelBg: "#02432e",
+        accent: "#5ceda5",
+      },
+    },
+
+
     nuanceIconSrc: dxc("PaperPlane.svg"),
 
     overview: {
@@ -190,10 +203,22 @@ export const personas = [
       { id: "info", label: "Information and Insights" },
     ],
 
-    cardBg: "#FCFCFC",
-    personaBg: "#C1D1FF",
-    panelBg: "#EEF2FF",
-    accent: "#2D58D2",
+    cardBg: "background.paper",
+    textColor: "text.primary",
+
+    colors: {
+      light: {
+        personaBg: "#C1D1FF",
+        panelBg: "#EEF2FF",
+        accent: "#2D58D2",
+      },
+      dark: {
+        personaBg: "#213670",
+        panelBg: "#26304f",
+        accent: "#6b93ff",
+      },
+    },
+
     nuanceIconSrc: dxc("Wrench.svg"),
 
     overview: {
@@ -342,10 +367,22 @@ export const personas = [
       { id: "info", label: "Information and Insights" },
     ],
 
-    cardBg: "#FCFCFC",
-    personaBg: "#FFE196",
-    panelBg: "#FFF6DE",
-    accent: "#8D6600",
+    cardBg: "background.paper",
+    textColor: "text.primary",
+
+    colors: {
+      light: {
+        personaBg: "#FFE196",
+        panelBg: "#FFF6DE",
+        accent: "#8D6600",
+      },
+      dark: {
+        personaBg: "#795c11",
+        panelBg: "#554312",
+        accent: "#f4bb2a",
+      },
+    },
+
     nuanceIconSrc: dxc("Gear.svg"),
 
     overview: {
@@ -501,10 +538,22 @@ export const personas = [
       { id: "info", label: "Information and Insights" },
     ],
 
-    cardBg: "#FCFCFC",
-    personaBg: "#B7E3F9",
-    panelBg: "#F0F9FD",
-    accent: "#0688C8",
+    cardBg: "background.paper",
+    textColor: "text.primary",
+
+    colors: {
+      light: {
+        personaBg: "#B7E3F9",
+        panelBg: "#F0F9FD",
+        accent: "#0688C8",
+      },
+      dark: {
+        personaBg: "#1e5d7c",
+        panelBg: "#113b4d",
+        accent: "#64cbff",
+      },
+    },
+
     nuanceIconSrc: dxc("Compass.svg"),
 
     overview: {
@@ -665,10 +714,22 @@ export const personas = [
       { id: "info", label: "Information and Insights" },
     ],
 
-    cardBg: "#FCFCFC",
-    personaBg: "#FFBDDC",
-    panelBg: "#FFEFF7",
-    accent: "#F5147D",
+    cardBg: "background.paper",
+    textColor: "text.primary",
+
+    colors: {
+      light: {
+        personaBg: "#FFBDDC",
+        panelBg: "#FFEFF7",
+        accent: "#F5147D",
+      },
+      dark: {
+        personaBg: "#8c2b58",
+        panelBg: "#531735",
+        accent: "#ff6eb2",
+      },
+    },
+
     nuanceIconSrc: dxc("LightBulb.svg"),
 
     overview: {
@@ -831,10 +892,22 @@ export const personas = [
       { id: "info", label: "Information and Insights" },
     ],
 
-    cardBg: "#FCFCFC",
-    personaBg: "#FFC495",
-    panelBg: "#FFEDDF",
-    accent: "#F96F00",
+    cardBg: "background.paper",
+    textColor: "text.primary",
+
+    colors: {
+      light: {
+        personaBg: "#FFC495",
+        panelBg: "#FFEDDF",
+        accent: "#F96F00",
+      },
+      dark: {
+        personaBg: "#914609",
+        panelBg: "#563216",
+        accent: "#ff9035",
+      },
+    },
+
     nuanceIconSrc: dxc("Shield.svg"),
 
     overview: {
@@ -988,10 +1061,22 @@ export const personas = [
       { id: "info", label: "Information and Insights" },
     ],
 
-    cardBg: "#FCFCFC",
-    personaBg: "#DCEAB5",
-    panelBg: "#EEF6DA",
-    accent: "#5A7C00",
+    cardBg: "background.paper",
+    textColor: "text.primary",
+
+    colors: {
+      light: {
+        personaBg: "#DCEAB5",
+        panelBg: "#EEF6DA",
+        accent: "#5A7C00",
+      },
+      dark: {
+        personaBg: "#5b7612ff",
+        panelBg: "#3f540aff",
+        accent: "#cbff3dff",
+      },
+    },
+    
     nuanceIconSrc: dxc("Metronome.svg"),
 
     overview: {
@@ -1140,10 +1225,21 @@ export const personas = [
     ],
 
     cardBg: "#333340",
-    personaBg: "#6B6A7A",
-    panelBg: "#42414E",
-    accent: "#FFF",
     textColor: "#FFF",
+
+    colors: {
+      light: {
+        personaBg: "#6B6A7A",
+        panelBg: "#42414E",
+        accent: "#FFF",
+      },
+      dark: {
+        personaBg: "#6B6A7A",
+        panelBg: "#42414E",
+        accent: "#FFF",
+      },
+    },
+    
     nuanceIconSrc: dxc("Radar.svg"),
 
     overview: {

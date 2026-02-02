@@ -61,6 +61,7 @@ export function DesignProcessSection({
     // bottom row content
     phases = [], // [{ title, body }],
     descColor,
+    titleColor,
 }) {
     return (
         <Box
@@ -77,7 +78,7 @@ export function DesignProcessSection({
                     <Typography
                         variant="h1"
                         sx={{
-                            color: bgColor,
+                            color: titleColor,
                             textTransform: "uppercase",
                             fontWeight: { xs: 400, md: 200 },
                             textBoxEdge: "cap alphabetic",

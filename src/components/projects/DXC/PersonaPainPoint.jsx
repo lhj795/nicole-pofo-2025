@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { GridLayout, GridItem } from "../../GridLayout";
 import SentimentVeryDissatisfied from "@mui/icons-material/SentimentVeryDissatisfied";
 
@@ -23,17 +24,24 @@ export default function PersonaPainPoint({ persona }) {
     const header = pain.header ?? {};
     const painPoint = pain.painPoint ?? {};
 
+    const theme = useTheme();
+    const mode = theme.palette.mode;
+
+    const c = persona?.colors?.[mode] ?? persona?.colors?.light ?? {};
+    const personaBg = c.personaBg ?? persona?.personaBg;
+
+
     return (
         <Box
             sx={{
                 bgcolor: persona?.cardBg,
-                border: `1px solid ${persona?.personaBg}`,
+                border: `1px solid ${personaBg}`,
                 borderRadius: "12px",
                 color: persona?.textColor,
             }}
         >
             <GridLayout
-                px={{ xs: 3, md: 4 }} 
+                px={{ xs: 3, md: 4 }}
                 py={{ xs: 3, md: 4 }}
                 gapY={3}
             >
@@ -144,7 +152,7 @@ export default function PersonaPainPoint({ persona }) {
                                         flexDirection: "column",
                                         gap: 0.75,
                                         flexGrow: 1,
-                                        bgcolor: { xs: persona?.personaBg, md: persona?.cardBg, },
+                                        bgcolor: { xs: personaBg, md: persona?.cardBg, },
                                     }}
                                 >
                                     <Typography variant="body1Bold">Help me</Typography>
