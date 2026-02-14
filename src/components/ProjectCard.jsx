@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
 export default function ProjectCard({
     title,
@@ -11,6 +12,9 @@ export default function ProjectCard({
     bgColor = "#f0f0f0",
     descriptionColor = "rgba(0,0,0,0.5)",   // DEFAULT VALUE
 }) {
+
+    const theme = useTheme();
+    const isDark = theme.palette.mode === "dark";
 
     return (
         <Link
@@ -98,7 +102,7 @@ export default function ProjectCard({
                             border: { xs: "none", md: "1px solid white" },
                             backgroundColor: { xs: "none", md: "#979797" },
                             backdropFilter: { xs: "none", md: "blur(8px)" },
-                            mixBlendMode: "screen",        // 🔸 only this blends
+                            mixBlendMode: isDark ? "multiply" : "screen",
                             opacity: { xs: 1, md: 0 },     // visible by default on mobile, hidden on desktop
                             transition: "opacity 0.35s ease-out",
                             zIndex: 0,

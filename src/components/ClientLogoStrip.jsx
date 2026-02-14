@@ -70,12 +70,10 @@ function LogoRow() {
           sx={{
             height: { xs: 48, lg: 80, },
             width: "auto",
-            opacity: 0.7,
+            opacity: 0.5,
             transition: "opacity 0.2s",
-            filter: "grayscale(100%)",
             "&:hover": {
               opacity: 1,
-              filter: "grayscale(0%)",
             },
           }}
         />
@@ -105,7 +103,7 @@ export default function ClientLogoStrip() {
         }}
       >
         <LogoRow />
-        <LogoRow /> {/* duplicated for seamless loop */}
+        <LogoRow /> {/* loop */}
       </Box>
     </Box>
   );

@@ -1,6 +1,7 @@
 // src/components/GradientCursor.jsx
 import React, { useEffect, useRef, useState } from "react";
 import { Box, GlobalStyles, Typography, Stack } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const CURSOR_SIZE = 96; // base size for centering
 
@@ -38,6 +39,10 @@ export default function GradientCursor() {
 
   // "default" = circle, "caseStudy" = "View case study" label
   const [mode, setMode] = useState("default");
+
+  // Theme
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
 
   useEffect(() => {
     const handleMove = (e) => {
@@ -189,8 +194,8 @@ export default function GradientCursor() {
               width: CURSOR_SIZE,
               height: CURSOR_SIZE,
               borderRadius: "50%",
-              backgroundColor: "#232323",
-              mixBlendMode: "color-burn",
+              backgroundColor: isDark ? "#cccccc" : "#232323",
+              mixBlendMode: isDark ? "color-dodge" : "color-burn",
 
               // ⭐ transition between circle → pill
               transition:
@@ -202,8 +207,8 @@ export default function GradientCursor() {
               pr: 1.5,
               pl: 2,
               borderRadius: 999,
-              backgroundColor: "rgba(0,0,0,0.6)",
-              color: "#fff",
+              backgroundColor: isDark ? "rgba(255, 255, 255, 0.6)" : "rgba(0,0,0,0.6)",
+              color: isDark ? "#000" : "#fff",
               transition:
                 "width 0.15s ease, height 0.15s ease, border-radius 0.15s ease",
             }),
@@ -212,12 +217,12 @@ export default function GradientCursor() {
 
         {mode === "caseStudy" && (
           <Stack
-  direction="row"
-  alignContent="flex-end"
-  justifyContent="flex-end"
-  spacing={0.25}
-  sx={{ whiteSpace: "nowrap" }}
->
+            direction="row"
+            alignContent="flex-end"
+            justifyContent="flex-end"
+            spacing={0.25}
+            sx={{ whiteSpace: "nowrap" }}
+          >
             <Typography
               variant="caption"
               sx={{
@@ -232,8 +237,8 @@ export default function GradientCursor() {
             </Typography>
 
             {showArrow && (
-              <ThinArrow 
-                size={22} 
+              <ThinArrow
+                size={22}
                 strokeWidth={1.8}
               />
             )}

@@ -8,7 +8,8 @@ import {
     Link,
 } from "@mui/material";
 import NavBar from "../components/NavBar";
-import SmartLogo from "../assets/clients/smart-logo.svg";
+import SmartLogoWhite from "../assets/clients/smart-logo-white.svg";
+import SmartLogoBlack from "../assets/clients/smart-logo-black.svg";
 import ClientLogoStrip from "../components/ClientLogoStrip";
 import ProjectCard from "../components/ProjectCard";
 
@@ -64,6 +65,9 @@ export default function Home() {
 
     const blobColor = isDark ? "#fff" : "#000";
 
+    const smartImgSrc = isDark ? SmartLogoWhite : SmartLogoBlack
+
+
     // PROJECT DATA
     const projects = [
         {
@@ -73,8 +77,8 @@ export default function Home() {
                 "A unified IT management platform to monitor systems, resolve issues, and surface insights.",
             logoSrc: logoDXC,
             imageSrc: imgDXC,
-            bgColor: "#E7D1FF",
-            descriptionColor: "#8556B8",
+            bgColor: isDark ? "#622e99" : "#E7D1FF",
+            descriptionColor: isDark ? "#E7D1FF" : "#8556B8",
             to: "/dxc",
         },
         {
@@ -84,8 +88,8 @@ export default function Home() {
                 "Enabling patients and clinicians to take control of sleep health—anywhere.",
             logoSrc: logoApnimed,
             imageSrc: imgApnimed,
-            bgColor: "#C0C1FC",
-            descriptionColor: "#6059B5",
+            bgColor: isDark ? "#48419aff" : "#C0C1FC",
+            descriptionColor: isDark ? "#C0C1FC" : "#6059B5",
             to: "/apnimed",
         },
         {
@@ -95,8 +99,8 @@ export default function Home() {
                 "The next generation interface for a life-sustaining medical device.",
             logoSrc: logoMarCor,
             imageSrc: imgMarCor,
-            bgColor: "#D5EDFB",
-            descriptionColor: "#457593",
+            bgColor: isDark ? "#005e98" : "#D5EDFB",
+            descriptionColor: isDark ? "#D5EDFB" : "#457593",
             to: "/marcor",
         },
         {
@@ -106,8 +110,8 @@ export default function Home() {
                 "Humanizing the hiring journey with workflows that serve people—not just processes.",
             logoSrc: logo10x,
             imageSrc: img10x,
-            bgColor: "#B6D4FF",
-            descriptionColor: "#356BBA",
+            bgColor: isDark ? "#356BBA" : "#B6D4FF",
+            descriptionColor: isDark ? "#B6D4FF" : "#356BBA",
             to: "/10xfinders",
         },
         {
@@ -117,8 +121,8 @@ export default function Home() {
                 "A shopping experience that centers accessibility, dignity, and independence for visual impairment.",
             logoSrc: logoAble,
             imageSrc: imgAble,
-            bgColor: "#FFD04D",
-            descriptionColor: "#886400",
+            bgColor: isDark ? "#ffbb00ff" : "#FFD04D",
+            descriptionColor: isDark ? "#FFD04D" : "#886400",
             to: "/able",
         },
         {
@@ -128,8 +132,8 @@ export default function Home() {
                 "Bringing warmth and ease back to hybrid spaces by illuminating and designing smarter meetings.",
             logoSrc: logoLightly,
             imageSrc: imgLightly,
-            bgColor: "#FFAB40",
-            descriptionColor: "#965400",
+            bgColor: isDark ? "#de7e00" : "#FFAB40",
+            descriptionColor: isDark ? "#FFAB40" : "#965400",
             to: "/lightly",
         },
         {
@@ -139,8 +143,8 @@ export default function Home() {
                 "A values-driven shopping platform that aligns consumer values with brands.",
             logoSrc: logoInvolv,
             imageSrc: imgInvolv,
-            bgColor: "#D4DBEB",
-            descriptionColor: "#616A7F",
+            bgColor: isDark ? "#616A7F" : "#D4DBEB",
+            descriptionColor: isDark ? "#b6c2e0" : "#616A7F",
             to: "/involv"
         },
         {
@@ -150,8 +154,8 @@ export default function Home() {
                 "An end-to-end cinematic journey for true film fanatics.",
             logoSrc: logoAMC,
             imageSrc: imgAMC,
-            bgColor: "#CF2541",
-            descriptionColor: "#980019",
+            bgColor: isDark ? "#980019" : "#CF2541",
+            descriptionColor: isDark ? "#ff627c" : "#980019",
             to: "/amc"
         },
     ];
@@ -400,7 +404,7 @@ export default function Home() {
                                 >
                                     <Box
                                         component="img"
-                                        src={SmartLogo}
+                                        src={smartImgSrc}
                                         alt="Smart Design"
                                         sx={{
                                             height: 48,
@@ -415,7 +419,7 @@ export default function Home() {
 
 
                     {/* Client logo strip – moves with the intro, still pinned */}
-                    <Box sx={{ pt: 6 }}>
+                    <Box sx={{ pt: 6, color: "red" }}>
                         <ClientLogoStrip />
                     </Box>
                 </Box>

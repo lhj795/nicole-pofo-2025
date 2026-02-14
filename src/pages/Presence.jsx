@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import NavBar from "../components/NavBar";
 import PresencePhotoCollage from "../components/PresencePhotoCollage";
+import BlobLogo from "../components/BlobLogo";
 
 export default function Presence() {
     // simple staggered visibility for sections
@@ -52,6 +53,7 @@ export default function Presence() {
             }}
         >
             <NavBar />
+            <BlobLogo collapsed />
 
             <Box
                 sx={{
