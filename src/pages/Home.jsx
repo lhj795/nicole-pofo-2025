@@ -43,7 +43,7 @@ import logoMarCor from "../assets/project-hero-images/MarCorLogo.png";
 // Localization
 import { useLocalization } from "../il8n/LocalizationProvider";
 
-export default function Home() {
+export default function Home({ onToggleLanguage }) {
     // Localization
     const { t } = useLocalization();
 
@@ -246,7 +246,7 @@ export default function Home() {
                 position: "relative",
             }}
         >
-            <NavBar />
+            <NavBar onToggleLanguage={onToggleLanguage} />
 
             {/* Hero blob wrapper with scroll-based transform */}
             {!collapsed && (
@@ -341,7 +341,7 @@ export default function Home() {
                                     transition: "opacity 0.9s ease-out, transform 1.1s cubic-bezier(0.16, 1, 0.3, 1)",
                                 }}
                             >
-                                I design to make a difference,
+                                {t("home.introTitle")}
                             </Typography>
 
                             {/* Body copy - staggered in after heading */}
@@ -355,8 +355,7 @@ export default function Home() {
                                     transition: "opacity 0.8s ease-out 0.05s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.05s",
                                 }}
                             >
-                                crafting experiences that save lives, welcome every user, earn
-                                trust in technology, and bring delight to complexity.
+                                {t("home.introBody1")}
                             </Typography>
 
                             <Typography
@@ -369,9 +368,7 @@ export default function Home() {
                                     transition: "opacity 0.8s ease-out 0.12s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.12s",
                                 }}
                             >
-                                I am a UX/UI Designer with a tactile heart. Rooted in BFA
-                                Industrial Design, MA Design Engineering and hands always reaching
-                                for clay.
+                                {t("home.introBody2")}
                             </Typography>
 
                             <Typography

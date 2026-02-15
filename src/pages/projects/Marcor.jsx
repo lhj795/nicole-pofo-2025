@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import CursorLink from "../../components/CursorLink";
 import NavBar from "../../components/NavBar";
 import { GridLayout, GridItem } from "../../components/GridLayout";
 import { ProjectHero } from "../../components/projects/ProjectHero";
@@ -19,13 +18,11 @@ const MarcorPage = () => {
             heroBg: "#D8DDE0",
             designProcessBg: "#00416A",
             designProcessTitle: "#00416A",
-            activityBg: "#F7971D",
         },
         dark: {
             heroBg: "#29333B",
             designProcessBg: "#00416A",
             designProcessForeground: "#E6E8EB",
-            activityBg: "#b86800ff",
         },
     };
 
@@ -131,17 +128,14 @@ const MarcorPage = () => {
                         <ProcessTrack
                             steps={["UX Research", "Market Study"]}
                             foreground={C.designProcessForeground}
-                            activityBg={C.activityBg}
                         />
                         <ProcessTrack
                             steps={["Ideation", "Validation"]}
                             foreground={C.designProcessForeground}
-                            activityBg={C.activityBg}
                         />
                         <ProcessTrack
                             steps={["Iteration", "Testing"]}
                             foreground={C.designProcessForeground}
-                            activityBg={C.activityBg}
                         />
                     </Box>
                 }

@@ -7,6 +7,7 @@ import {
   Box,
   IconButton,
 } from "@mui/material";
+import LanguageIcon from "@mui/icons-material/Language";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import ColorModeContext from "../context/ColorModeContext";
 import { ReactComponent as ModeIcon } from "../assets/nav/modeIcon.svg";
@@ -16,11 +17,14 @@ export default function NavBar() {
   const location = useLocation();
 
   // Mode
-  const { mode, toggleColorMode } = useContext(ColorModeContext);
-  const iconColor = mode === "text.primary";
+  const { toggleColorMode } = useContext(ColorModeContext);
 
   // Localization
-  const { t } = useLocalization();
+  const { setLanguage, t } = useLocalization();
+
+  const toggleLanguage = () => {
+    setLanguage((prevLanguage) => (prevLanguage === "en" ? "ko" : "en"));
+  };
 
   // Links
   const navLinks = [
@@ -51,7 +55,6 @@ export default function NavBar() {
           px: { xs: 2, md: 3 },
           display: "flex",
           justifyContent: "flex-end",
-          gap: 2,
         }}
       >
 
@@ -69,9 +72,9 @@ export default function NavBar() {
           disableRipple
           sx={{
             display: { xs: "none", md: "inline-flex" },
-            mr: "auto",
             pointerEvents: "auto",
-            color: iconColor,
+            color: "text.secondary",
+            mr: 1.5,
             "&:hover": {
               backgroundColor: "transparent",
               opacity: 0.75,
@@ -79,6 +82,22 @@ export default function NavBar() {
           }}
         >
           <ModeIcon width={23} height={15} />
+        </IconButton>
+        <IconButton
+          onClick={toggleLanguage}
+          aria-label={t("controls.languageLabel")}
+          disableRipple
+          sx={{
+            display: { xs: "none", md: "inline-flex" },
+            pointerEvents: "auto",
+            color: "text.secondary",
+            "&:hover": {
+              backgroundColor: "transparent",
+              opacity: 0.75,
+            },
+          }}
+        >
+          <LanguageIcon fontSize="small" />
         </IconButton>
           {navLinks.map((link) => {
             const active = location.pathname === link.to;

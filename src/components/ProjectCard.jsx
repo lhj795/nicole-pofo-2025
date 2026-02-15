@@ -13,6 +13,9 @@ export default function ProjectCard({
     descriptionColor = "rgba(0,0,0,0.5)",   // DEFAULT VALUE
 }) {
 
+    const resetCursorMode = () =>
+        window.dispatchEvent(new CustomEvent("cursor-mode", { detail: "default" }));
+
     const theme = useTheme();
     const isDark = theme.palette.mode === "dark";
 
@@ -20,6 +23,7 @@ export default function ProjectCard({
         <Link
             to={to}
             style={{ textDecoration: "none", color: "inherit" }}
+            onClick={resetCursorMode}
         >
             <Box
                 onMouseEnter={() =>
@@ -30,9 +34,7 @@ export default function ProjectCard({
                     )
                 }
                 onMouseLeave={() =>
-                    window.dispatchEvent(
-                        new CustomEvent("cursor-mode", { detail: "default" })
-                    )
+                    resetCursorMode()
                 }
                 sx={{
 

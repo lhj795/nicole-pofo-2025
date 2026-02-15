@@ -6,7 +6,7 @@ import PresencePhotoCollage from "../components/PresencePhotoCollage";
 import BlobLogo from "../components/BlobLogo";
 import { useLocalization } from "../il8n/LocalizationProvider";
 
-export default function Presence({language, onToggleLanguage}) {
+export default function Presence({ onToggleLanguage}) {
     const { t } = useLocalization();
 
     // simple staggered visibility for sections
