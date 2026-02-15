@@ -4,8 +4,11 @@ import { Box, Container, Stack, Typography } from "@mui/material";
 import NavBar from "../components/NavBar";
 import PresencePhotoCollage from "../components/PresencePhotoCollage";
 import BlobLogo from "../components/BlobLogo";
+import { useLocalization } from "../il8n/LocalizationProvider";
 
-export default function Presence() {
+export default function Presence({language, onToggleLanguage}) {
+    const { t } = useLocalization();
+
     // simple staggered visibility for sections
     const [visible, setVisible] = useState({
         about: false,
@@ -52,7 +55,7 @@ export default function Presence() {
                 position: "relative",
             }}
         >
-            <NavBar />
+            <NavBar onToggleLanguage={onToggleLanguage} />
             <BlobLogo collapsed />
 
             <Box
@@ -93,43 +96,33 @@ export default function Presence() {
                             <Stack spacing={4}>
                                 <Box sx={makeSectionStyle("about")}>
                                 <Typography variant="h2" sx={{ mb: 1 }}>
-                                        About Nicole
+                                        {t("presence.aboutTitle")}
                                     </Typography>
                                     </Box>
                                 <Box sx={makeSectionStyle("tldr")}>
                                     <Typography variant="h4" sx={{ mb: 2 }}>
-                                        Here&apos;s my TLDR
+                                        {t("presence.tldrTitle")}
                                     </Typography>
                                     <Typography variant="body1">
-                                        I&apos;ve led and shipped over a dozen digital products that have scaled and made a
-                                        real difference. I work hand-in-hand with researchers, developers, engineers, and
-                                        stakeholders to translate insights into design. With a background in ID and DE, I
-                                        thrive in multidisciplinary teams where thoughtful collaboration turns complexity
-                                        into clarity.
+                                        {t("presence.tldrBody")}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={makeSectionStyle("outside")}>
                                     <Typography variant="h4" sx={{ mb: 2 }}>
-                                        Outside of work 🌊
+                                        {t("presence.outsideTitle")}
                                     </Typography>
                                     <Typography variant="body1">
-                                        I love to get my hands dirty with clay. I find comfort in the tactile practice of
-                                        pottery. Rhythm, repetition and presence, a reminder to slow down and trust the flow
-                                        of making. You&apos;ll also find me at sunset yogas, or on hot designer walks at the beach!
+                                        {t("presence.outsideBody")}
                                     </Typography>
                                 </Box>
 
                                 <Box sx={makeSectionStyle("bestPart")}>
                                     <Typography variant="h4" sx={{ mb: 2 }}>
-                                        You are the best part 🫵
+                                        {t("presence.bestPartTitle")}
                                     </Typography>
                                     <Typography variant="body1">
-                                        I work best with people, not just pixels. My fav moments often happen off-screen.
-                                        Sketch sessions with design colleagues, white-boarding with researchers, solving
-                                        real edge cases with engineers, and helping junior designers grow into their strengths.
-                                        I care just as much about how we work together as what we ship. My teammates say I
-                                        bring curiosity into the room.
+                                        {t("presence.bestPartBody")}
                                     </Typography>
                                 </Box>
                             </Stack>

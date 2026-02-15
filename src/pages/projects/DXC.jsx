@@ -81,7 +81,7 @@ const DXCPage = () => {
                     <Box
                         component="img"
                         src={dxc("DXCLogo.svg")}
-                        alt="DXC Cover"
+                        alt="DXC Logo"
                         sx={{ height: "2rem", display: "block" }}
                     />
                 }

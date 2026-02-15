@@ -40,7 +40,13 @@ import logoInvolv from "../assets/project-hero-images/InvolvLogo.png";
 import logoLightly from "../assets/project-hero-images/LightlyLogo.png";
 import logoMarCor from "../assets/project-hero-images/MarCorLogo.png";
 
+// Localization
+import { useLocalization } from "../il8n/LocalizationProvider";
+
 export default function Home() {
+    // Localization
+    const { t } = useLocalization();
+
     // INTRO ANIMATION STATE
     const [progress, setProgress] = useState(0); // 0 = full hero, 1 = docked
     const [showArrow, setShowArrow] = useState(false);
@@ -53,10 +59,10 @@ export default function Home() {
     // Trigger staggered animation on mount
     useEffect(() => {
         setIntroTitleVisible(true);
-        const t = setTimeout(() => {
+        const timerId = setTimeout(() => {
             setIntroBodyVisible(true);
         }, 250); // delay before body text rises in
-        return () => clearTimeout(t);
+        return () => clearTimeout(timerId);
     }, []);
 
     // Theme
@@ -72,9 +78,8 @@ export default function Home() {
     const projects = [
         {
             id: "dxc",
-            title: "Enterprise AI Workflow Platform",
-            description:
-                "A unified IT management platform to monitor systems, resolve issues, and surface insights.",
+            title: t("home.projects.dxc.title"),
+            description: t("home.projects.dxc.description"),
             logoSrc: logoDXC,
             imageSrc: imgDXC,
             bgColor: isDark ? "#622e99" : "#E7D1FF",
@@ -83,9 +88,8 @@ export default function Home() {
         },
         {
             id: "apnimed",
-            title: "Diagnosis & Monitoring for OSA",
-            description:
-                "Enabling patients and clinicians to take control of sleep health—anywhere.",
+            title: t("home.projects.apnimed.title"),
+            description: t("home.projects.apnimed.description"),
             logoSrc: logoApnimed,
             imageSrc: imgApnimed,
             bgColor: isDark ? "#48419aff" : "#C0C1FC",
@@ -94,9 +98,8 @@ export default function Home() {
         },
         {
             id: "marcor",
-            title: "Dialysis Water Purification System",
-            description:
-                "The next generation interface for a life-sustaining medical device.",
+            title: t("home.projects.marcor.title"),
+            description: t("home.projects.marcor.description"),
             logoSrc: logoMarCor,
             imageSrc: imgMarCor,
             bgColor: isDark ? "#005e98" : "#D5EDFB",
@@ -105,9 +108,8 @@ export default function Home() {
         },
         {
             id: "10x",
-            title: "A-Z Recruiting Solution",
-            description:
-                "Humanizing the hiring journey with workflows that serve people—not just processes.",
+            title: t("home.projects.tenx.title"),
+            description: t("home.projects.tenx.description"),
             logoSrc: logo10x,
             imageSrc: img10x,
             bgColor: isDark ? "#356BBA" : "#B6D4FF",
@@ -116,9 +118,8 @@ export default function Home() {
         },
         {
             id: "able",
-            title: "Brick and Mortar Shopping for All",
-            description:
-                "A shopping experience that centers accessibility, dignity, and independence for visual impairment.",
+            title: t("home.projects.able.title"),
+            description: t("home.projects.able.description"),
             logoSrc: logoAble,
             imageSrc: imgAble,
             bgColor: isDark ? "#ffbb00ff" : "#FFD04D",
@@ -127,9 +128,8 @@ export default function Home() {
         },
         {
             id: "lightly",
-            title: "Restoring Collegial Moments in Hybrid Workspace",
-            description:
-                "Bringing warmth and ease back to hybrid spaces by illuminating and designing smarter meetings.",
+            title: t("home.projects.lightly.title"),
+            description: t("home.projects.lightly.description"),
             logoSrc: logoLightly,
             imageSrc: imgLightly,
             bgColor: isDark ? "#de7e00" : "#FFAB40",
@@ -138,9 +138,8 @@ export default function Home() {
         },
         {
             id: "involv",
-            title: "Conscious Commerce with Measurable Impact",
-            description:
-                "A values-driven shopping platform that aligns consumer values with brands.",
+            title: t("home.projects.involv.title"),
+            description: t("home.projects.involv.description"),
             logoSrc: logoInvolv,
             imageSrc: imgInvolv,
             bgColor: isDark ? "#616A7F" : "#D4DBEB",
@@ -149,9 +148,8 @@ export default function Home() {
         },
         {
             id: "amc",
-            title: "Reimagining the Movie-Going Experience",
-            description:
-                "An end-to-end cinematic journey for true film fanatics.",
+            title: t("home.projects.amc.title"),
+            description: t("home.projects.amc.description"),
             logoSrc: logoAMC,
             imageSrc: imgAMC,
             bgColor: isDark ? "#980019" : "#CF2541",

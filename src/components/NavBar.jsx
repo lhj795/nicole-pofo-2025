@@ -1,22 +1,33 @@
 // src/components/NavBar.jsx
-import React from "react";
+import React, { useContext } from "react";
 import {
   AppBar,
   Toolbar,
   Button,
   Box,
+  IconButton,
 } from "@mui/material";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-
-const navLinks = [
-  { label: "Pixels", to: "/" },
-  { label: "Presence", to: "/presence" },
-  { label: "Pottery", to: "/pottery" },
-];
+import ColorModeContext from "../context/ColorModeContext";
+import { ReactComponent as ModeIcon } from "../assets/nav/modeIcon.svg";
+import { useLocalization } from "../il8n/LocalizationProvider";
 
 export default function NavBar() {
   const location = useLocation();
 
+  // Mode
+  const { mode, toggleColorMode } = useContext(ColorModeContext);
+  const iconColor = mode === "text.primary";
+
+  // Localization
+  const { t } = useLocalization();
+
+  // Links
+  const navLinks = [
+    { label: t("nav.pixels"), to: "/" },
+    { label: t("nav.presence"), to: "/presence" },
+    { label: t("nav.pottery"), to: "/pottery" },
+  ];
 
   return (
     <AppBar
@@ -52,6 +63,23 @@ export default function NavBar() {
             transition: "opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s",
           }}
         >
+          <IconButton
+          onClick={toggleColorMode}
+          aria-label="Toggle light and dark mode"
+          disableRipple
+          sx={{
+            display: { xs: "none", md: "inline-flex" },
+            mr: "auto",
+            pointerEvents: "auto",
+            color: iconColor,
+            "&:hover": {
+              backgroundColor: "transparent",
+              opacity: 0.75,
+            },
+          }}
+        >
+          <ModeIcon width={23} height={15} />
+        </IconButton>
           {navLinks.map((link) => {
             const active = location.pathname === link.to;
             return (

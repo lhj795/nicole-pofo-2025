@@ -4,14 +4,17 @@ import { CssBaseline } from "@mui/material";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import "./styles/fonts.css";
+import { LocalizationProvider } from "../src/il8n/LocalizationProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-      <CssBaseline />
+    <CssBaseline />
+    <LocalizationProvider>
       <Router>
         <App />
       </Router>
+    </LocalizationProvider>
   </React.StrictMode>
 );
