@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import "./styles/fonts.css";
 import TypographyDemo from "./pages/TypographyDemo";
@@ -14,8 +14,18 @@ import ColorModeContext from "./context/ColorModeContext";
 // Projects
 import Lightly from "./pages/projects/Lightly";
 import DXC from "./pages/projects/DXC";
-import Apnimed from "./pages/projects/Apnimed"
-import Marcor from "./pages/projects/Marcor"
+import Apnimed from "./pages/projects/Apnimed";
+import Marcor from "./pages/projects/Marcor";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 export default function App() {
   const [mode, setMode] = useState("light");
@@ -36,6 +46,9 @@ export default function App() {
         <CssBaseline />
         {/* Custom cursor across the whole site */}
         <GradientCursor />
+
+        {/* Scroll to top */}
+        <ScrollToTop />
 
         {/* No Router here! */}
         <Routes>

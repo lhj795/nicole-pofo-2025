@@ -1,15 +1,22 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { GridLayout, GridItem } from "../GridLayout";
+import { useLocalization } from "../../il8n/LocalizationProvider";
 
 export function ProjectIntro({
-  leftTitle = "Abstract",
+  leftTitle,
   leftBody,
-  rightTitle = "Involvement",
+  rightTitle,
   rightBody,
   leftCols = { xs: "1 / 13", md: "2 / 7", lg: "3/7" },
   rightCols = { xs: "1 / 13", md: "7 / 12", lg: "7/11" },
 }) {
+
+  const { t } = useLocalization();
+
+  const resolvedLeftTitle = leftTitle ?? t("projectsIntro.leftTitle");
+  const resolvedRightTitle = rightTitle ?? t("projectsIntro.rightTitle");
+
   return (
     <GridLayout py={3}>
       {/* Left block */}
@@ -22,7 +29,7 @@ export function ProjectIntro({
         }}
       >
         <Typography variant="body1Bold">
-          {leftTitle}
+          {resolvedLeftTitle}
         </Typography>
         <Typography variant="body1">{leftBody}</Typography>
       </GridItem>
@@ -37,7 +44,7 @@ export function ProjectIntro({
         }}
       >
         <Typography variant="body1Bold">
-          {rightTitle}
+          {resolvedRightTitle}
         </Typography>
         <Typography variant="body1">{rightBody}</Typography>
       </GridItem>
